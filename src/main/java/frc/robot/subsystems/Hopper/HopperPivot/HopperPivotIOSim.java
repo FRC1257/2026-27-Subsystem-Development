@@ -4,15 +4,16 @@ import static edu.wpi.first.units.Units.Radians;
 import static edu.wpi.first.units.Units.RadiansPerSecond;
 import static edu.wpi.first.units.Units.Volts;
 
-import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.math.controller.ArmFeedforward;
 import edu.wpi.first.math.controller.PIDController;
-import edu.wpi.first.math.controller.ProfiledPIDController;
 import edu.wpi.first.math.system.plant.DCMotor;
-import edu.wpi.first.math.trajectory.TrapezoidProfile;
-import edu.wpi.first.units.measure.Angle;
 import edu.wpi.first.units.measure.Voltage;
-import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.wpilibj.smartdashboard.Mechanism2d;
+import edu.wpi.first.wpilibj.smartdashboard.MechanismLigament2d;
+import edu.wpi.first.wpilibj.smartdashboard.MechanismRoot2d;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj.util.Color;
+import edu.wpi.first.wpilibj.util.Color8Bit;
 import edu.wpi.first.wpilibj.simulation.SingleJointedArmSim;
 
 public class HopperPivotIOSim implements HopperPivotIO {
@@ -37,13 +38,39 @@ public class HopperPivotIOSim implements HopperPivotIO {
             0
         );
 
+    // --- Mechanism2d Setup ---
+    // 1. Create canvas (width x height in meters or arbitrary canvas units)
+    private final Mechanism2d m_mech = new Mechanism2d(1.0, 1.0);
+    
+    // 2. Add root pivot point at center bottom of canvas
+    private final MechanismRoot2d m_root = m_mech.getRoot("HopperPivotRoot", 0.5, 0.2);
+    
+    // 3. Create the arm ligament (name, length, initial angle in degrees, line weight, color)
+    private final MechanismLigament2d m_armLigament = m_root.append(
+        new MechanismLigament2d(
+            "HopperArm", 
+            HopperPivotConstants.HopperPivotSimConstants.kArmLength, 
+            Math.toDegrees(sim.getAngleRads()),
+            6, 
+            new Color8Bit(Color.kRed)
+        )
+    );
+
+    public HopperPivotIOSim() {
+        // Publish Mechanism2d structure to SmartDashboard
+        SmartDashboard.putData("Hopper Pivot Sim", m_mech);
+    }
+
     @Override
     public void updateInputs(HopperPivotIOInputs inputs) { 
         sim.update(0.02);
+        
         inputs.leftpivotVoltage = appliedVolts;
         inputs.leftpivotAngle = Radians.of(sim.getAngleRads());
         inputs.leftpivotVelocity = RadiansPerSecond.of(sim.getVelocityRadPerSec());
-        
+
+        // Update visual angle on Mechanism2d (expects degrees)
+        m_armLigament.setAngle(Math.toDegrees(sim.getAngleRads()));
     }
 
     @Override
@@ -54,7 +81,7 @@ public class HopperPivotIOSim implements HopperPivotIO {
 
     @Override
     public void runAngle(double angle, double velocity) {
-        runVoltage(Volts.of(controller.calculate(sim.getAngleRads(), angle)+feedforward.calculate(angle, velocity)));
+        runVoltage(Volts.of(controller.calculate(sim.getAngleRads(), angle) + feedforward.calculate(angle, velocity)));
     }
 
     @Override
@@ -62,6 +89,4 @@ public class HopperPivotIOSim implements HopperPivotIO {
         sim.setInputVoltage(0);
         appliedVolts = Volts.of(0.0);
     }
-
-
 }
