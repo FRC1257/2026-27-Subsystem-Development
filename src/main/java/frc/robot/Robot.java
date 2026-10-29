@@ -12,7 +12,6 @@ import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.simulation.DriverStationSim;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
-import frc.robot.Energy.BatteryLogger;
 import frc.robot.util.drive.AllianceFlipUtil;
 import frc.robot.util.drive.DriveControls;
 import frc.robot.util.misc.Elastic;
@@ -35,8 +34,7 @@ public class Robot extends LoggedRobot {
   private Command autonomousCommand;
   private RobotContainer robotContainer;
   private boolean controlsConfigured = false;
-  public static final BatteryLogger batteryLogger = new BatteryLogger();
-  private final BatteryIOInputsAutoLogged batteryInputs = new BatteryIOInputsAutoLogged(); 
+
 
   /**
    * This function is run when the robot is first started up and should be used for any
@@ -116,18 +114,13 @@ public class Robot extends LoggedRobot {
     // This must be called from the robot's periodic block in order for anything in
     // the Command-based framework to work.
 
-    batteryInputs.batteryVoltage = RobotController.getBatteryVoltage();
-    batteryInputs.rioCurrent = RobotController.getInputCurrent();
-    Logger.processInputs("BatteryLogger", batteryInputs);
-    batteryLogger.setBatteryVoltage(batteryInputs.batteryVoltage);
-    batteryLogger.setRioCurrent(batteryInputs.rioCurrent);
+
+
 
 
     CommandScheduler.getInstance().run();
     
-    batteryLogger.periodicAfterScheduler();
 
-    NautilusMechanism3d.getMeasured().log("Mechanism3d");
   }
 
   public static boolean showHardwareAlerts() {
@@ -145,7 +138,7 @@ public class Robot extends LoggedRobot {
   /** This autonomous runs the autonomous command selected by your {@link RobotContainer} class. */
   @Override
   public void autonomousInit() {
-    autonomousCommand = robotContainer.getAutonomousCommand();
+
 
     // schedule the autonomous command (example)
     if (autonomousCommand != null) {
