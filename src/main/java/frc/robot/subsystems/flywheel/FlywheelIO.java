@@ -1,11 +1,12 @@
 package frc.robot.subsystems.Flywheel;
-//Packages
 
 import static edu.wpi.first.units.Units.Amps;
 import static edu.wpi.first.units.Units.Radians;
 import static edu.wpi.first.units.Units.RadiansPerSecond;
 import static edu.wpi.first.units.Units.Volts;
 import static edu.wpi.first.units.Units.Celsius;
+
+import org.littleonrobotics.junction.AutoLog;
 
 import edu.wpi.first.units.measure.Angle;
 import edu.wpi.first.units.measure.AngularVelocity;
@@ -21,8 +22,9 @@ public interface FlywheelIO{
     import edu.wpi.first.units.measure.Temperature;
     import edu.wpi.first.units.measure.Voltage;
 
+    @AutoLog
     public static class FlywheelIOInputs {
-        //leader motor
+      
         public boolean flyWheelConnected = false;
         public Angle flywheelLeaderAngle = Radians.of(0.0);
         public AngularVelocity flywheelLeaderAngularVelocity = RadiansPerSecond.of(0.0);
@@ -30,7 +32,7 @@ public interface FlywheelIO{
         public Current flywheelLeaderCurrent = Amps.of(0.0);
         public Temperature flywheelLeaderTemperature = Celsius.of(0.0);
     
-        //follower motor
+       
         public boolean flywheelFollowerConnected = false;
         public Angle flywheelFollowerAngle = Radians.of(0.0);
         public AngularVelocity flywheelFollowerAngularVelocity = RadiansPerSecond.of(0.0);
