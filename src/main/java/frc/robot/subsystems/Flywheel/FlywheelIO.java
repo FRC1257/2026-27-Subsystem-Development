@@ -34,4 +34,8 @@ public interface FlywheelIO {
     default void stop() {}
 
     default void setBreakMode(boolean enabled) {}
+
+    default void setPID(double kp, double ki, double kd) {}
+
+    default void setFF(double kv, double ks, double kg) {}
 }
