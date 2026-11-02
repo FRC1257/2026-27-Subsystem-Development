@@ -15,11 +15,18 @@ import edu.wpi.first.units.measure.Voltage;
 public interface FlywheelIO {
      @AutoLog 
      public static class FlywheelIOInputs { 
-        public boolean FlywheelConnected = false; 
-        public Voltage flywheelVoltage= Volts.of(0.0);
-        public AngularVelocity flywheelAngularVelocity = RadiansPerSecond.of(0.0);
-        public Current flywheelCurrent = Amps.of(0.0);
-        public Temperature flyTemperature= Celsius.of(0.0); 
+        //motor 1
+        public boolean Motor1FlywheelConnected = false; 
+        public Voltage Motor1flywheelVoltage= Volts.of(0.0);
+        public AngularVelocity Motor1flywheelAngularVelocity = RadiansPerSecond.of(0.0);
+        public Current Motor1flywheelCurrent = Amps.of(0.0);
+        public Temperature Motor1flyTemperature= Celsius.of(0.0);  
+        //motor2 
+        public boolean Motor2FlywheelConnected = false; 
+        public Voltage Motor2flywheelVoltage= Volts.of(0.0);
+        public AngularVelocity Motor2flywheelAngularVelocity = RadiansPerSecond.of(0.0);
+        public Current Motor2flywheelCurrent = Amps.of(0.0);
+        public Temperature Motor2flyTemperature= Celsius.of(0.0); 
      }
 
      public default void updateInputs(FlywheelIOInputs inputs) {}
