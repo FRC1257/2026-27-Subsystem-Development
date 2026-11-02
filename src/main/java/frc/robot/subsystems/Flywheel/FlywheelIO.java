@@ -15,11 +15,17 @@ import edu.wpi.first.units.measure.Voltage;
 public interface FlywheelIO {
     @AutoLog
     public static class FlywheelIOInputs {
-        public boolean FlywheelConnected = false;
-        public Voltage FlywheelVoltage = Volts.of(0);
-        public AngularVelocity FlywheelAngularVelocity = RadiansPerSecond.of(0);
-        public Current FlywheelCurrent = Amps.of(0);
-        public Temperature FlywheelTemperature = Celsius.of(0);
+        public boolean FlywheelPersonConnected = false;
+        public Voltage FlywheelPersonVoltage = Volts.of(0);
+        public AngularVelocity FlywheelPersonAngularVelocity = RadiansPerSecond.of(0);
+        public Current FlywheelPersonCurrent = Amps.of(0);
+        public Temperature FlywheelPersonTemperature = Celsius.of(0);
+
+        public boolean FlywheelObjectConnected = false;
+        public Voltage FlywheelObjectVoltage = Volts.of(0);
+        public AngularVelocity FlywheelObjectAngularVelocity = RadiansPerSecond.of(0);
+        public Current FlywheelObjectCurrent = Amps.of(0);
+        public Temperature FlywheelObjectTemperature = Celsius.of(0);
     }
 
     default void updateInputs(FlywheelIOInputs inputs) {}
