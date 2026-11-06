@@ -1,4 +1,4 @@
-package frc.robot.subsystems.Flywheel;
+package frc.robot.subsystems.flywheel;
 
 import static edu.wpi.first.units.Units.Amps;
 import static edu.wpi.first.units.Units.Celsius;
