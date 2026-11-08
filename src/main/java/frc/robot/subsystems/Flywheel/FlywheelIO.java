@@ -17,16 +17,18 @@ public interface FlywheelIO {
     @Autolog
     public static class FlywheelIOInputs { 
         public boolean firstmotorConnected = false;
-        public Voltage firstmotorVoltage = Volts.of(magnitude:0,0);
-        public AngularVelocity firstmotorAngularVelocity = RadiansPerSecond.or(magnitude:0,0);
-        public Current firstmotorCurrent = Amps.of(magnitude:0,0);
-        public Angle firstmotorAngle = Radians.of(magnitude:0,0);
+        public Voltage firstmotorVoltage = Volts.of(0.0);
+        public AngularVelocity firstmotorAngularVelocity = RadiansPerSecond.of(0.0);
+        public Current firstmotorCurrent = Amps.of(0.0);
+        public Angle firstmotorAngle = Radians.of(0.0);
        
         public boolean secondmotorConnected = false;
-        public Voltage secondmotorVoltage = Volts.of(magnitude:0,0);
-        public AngularVelocity secondmotorAngularVelocity = RadiansPerSecond.or(magnitude:0,0);
-        public Current secondmotorCurrent = Amps.of(magnitude:0,0);
-        public Angle secondmotorAngle = Radians.of(magnitude:0,0);
+        public Voltage secondmotorVoltage = Volts.of(0.0);
+        public AngularVelocity secondmotorAngularVelocity = RadiansPerSecond.of(0.0);
+        public Current secondmotorCurrent = Amps.of(0.0);
+        public Angle secondmotorAngle = Radians.of(0.0);
+
+        //the word magnitude is written by vscode you don't need to write it; js the number
     }
     default void updateInputs(FlywheelIOInputs inputs) {}
 
