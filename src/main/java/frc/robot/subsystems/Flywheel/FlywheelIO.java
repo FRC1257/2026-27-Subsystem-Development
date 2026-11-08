@@ -5,8 +5,8 @@ import static edu.wpi.first.units.Units.Radians;
 import static edu.wpi.first.units.Units.RadiansPerSecond;
 import static edu.wpi.first.units.Units.Volts;
 
-import org.littletonrobotics.junction.Autolog;
-
+import org.littletonrobotics.junction.AutoLog;
+//this needed to have a capital L
 import edu.wpi.first.units.measure.Angle;
 import edu.wpi.first.units.measure.AngularVelocity;
 import edu.wpi.first.units.measure.Current;
@@ -14,7 +14,7 @@ import edu.wpi.first.units.measure.Voltage;
 
 public interface FlywheelIO {
 
-    @Autolog
+    @AutoLog
     public static class FlywheelIOInputs { 
         public boolean firstmotorConnected = false;
         public Voltage firstmotorVoltage = Volts.of(0.0);
