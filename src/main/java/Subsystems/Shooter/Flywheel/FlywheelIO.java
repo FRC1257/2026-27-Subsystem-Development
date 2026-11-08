@@ -1,5 +1,5 @@
-package frc.robot.subsystems.Shooter.Flywheel;
-
+package subsystems.Shooter.Flywheel;
+//changed folder name to lower case s
 import static edu.wpi.first.units.Units.Amps;
 import static edu.wpi.first.units.Units.Celsius;
 import static edu.wpi.first.units.Units.Radians;
