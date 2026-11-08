@@ -6,11 +6,13 @@ import static edu.wpi.first.units.Units.Volts;
 import static edu.wpi.first.units.Units.Radians;
 import static edu.wpi.first.units.Units.RadiansPerSecond;
 
-import edu.wpi.first.units.Angle;
-import edu.wpi.first.units.AngularVelocity;
-import edu.wpi.first.units.Current;
-import edu.wpi.first.units.Temperature;
-import edu.wpi.first.units.Voltage;
+import edu.wpi.first.units.measure.Angle;
+import edu.wpi.first.units.measure.AngularVelocity;
+import edu.wpi.first.units.measure.Current;
+import edu.wpi.first.units.measure.Temperature;
+import edu.wpi.first.units.measure.Voltage;
+
+//forgot .measure
 public interface FlywheelIO {
 
     public static class FlywheelIOInputs {
