@@ -1,4 +1,4 @@
-public package frc.robot.subsystems.flywheel;
+package frc.robot.subsystems.flywheel;
 //Packages
 
 import static edu.wpi.first.units.Units.Amps;
@@ -15,11 +15,6 @@ import edu.wpi.first.units.measure.Voltage;
 
 public interface FlywheelIO{
     
-    import edu.wpi.first.units.measure.Angle;
-    import edu.wpi.first.units.measure.AngularVelocity;
-    import edu.wpi.first.units.measure.Current;
-    import edu.wpi.first.units.measure.Temperature;
-    import edu.wpi.first.units.measure.Voltage;
 
     public static class FlywheelIOInputs{
         //leader motor
@@ -52,7 +47,4 @@ public interface FlywheelIO{
 
     public default void setFF(double ks, double kv) {}
 
-}
- {
-    
 }
