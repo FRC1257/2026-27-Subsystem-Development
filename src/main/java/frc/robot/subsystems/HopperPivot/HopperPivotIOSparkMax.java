@@ -27,19 +27,20 @@ import edu.wpi.first.units.measure.AngularVelocity;
 import frc.robot.Constants;
 
 public class HopperPivotIOSparkMax implements HopperPivotIO {
-    private final SparkMax leftMotor;
-    private final SparkMax rightMotor;
-
+    private SparkMax leftMotor;
+    private SparkMax rightMotor;
+    
     private SparkMaxConfig leftConfig;
     private SparkMaxConfig rightConfig;
 
     private ArmFeedforward feedforward;
-
-    public HopperPivotIOSparkMax() { //(int leftMotorID, int rightMotorID)
+   
+    public HopperPivotIOSparkMax() {
         leftMotor = new SparkMax(0, MotorType.kBrushless);
         rightMotor = new SparkMax(1, MotorType.kBrushless);
 
         leftConfig = new SparkMaxConfig();
+
         leftConfig
         .idleMode(IdleMode.kBrake);
 
@@ -47,15 +48,19 @@ public class HopperPivotIOSparkMax implements HopperPivotIO {
             .encoder
                 .positionConversionFactor(3);
         leftConfig
-                .closedLoop
-                .pid(1,2,3);
-            rightConfig = new SparkMaxConfig();
-            rightConfig.apply(leftConfig);
-            rightConfig.follow(leftMotor, true);
+            .closedLoop
+            .pid(1, 2, 3);
 
-        leftMotor.configure(leftConfig, com.revrobotics.ResetMode.kResetSafeParameters, com.revrobotics.PersistMode.kPersistParameters);
-        rightMotor.configure(rightConfig, com.revrobotics.ResetMode.kResetSafeParameters, com.revrobotics.PersistMode.kPersistParameters);
+        rightConfig = new SparkMaxConfig();
+        rightConfig.apply(leftConfig);
+        rightConfig.follow(leftMotor,true);
 
-        feedforward = new ArmFeedforward(3, 4, 5);
+    leftMotor.configure(leftConfig, com.revrobotics.ResetMode.kResetSafeParameters, com.revrobotics.PersistMode.kPersistParameters); 
+    rightMotor.configure(rightConfig, com.revrobotics.ResetMode.kResetSafeParameters, com.revrobotics.PersistMode.kPersistParameters); 
+
+    feedforward = new ArmFeedforward(3, 4,5);
+
+    }
+    
     
 }
