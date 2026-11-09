@@ -18,10 +18,10 @@ public interface FlywheelIO {
     @AutoLog
     public static class FlywheelIOInputs {
         public boolean flywheelConnected = false;
-        public Voltage fLywheelVoltage = Volts.of(magnitude:0);
-        public AngularVelocity flywheelAngularVelocity = RadiansPerSecond.of(magnitude:0);
-        public Temperature flywheelTemperature = Celsius.of(magnitude = 0);
-        public Current flywheelCurrent = Amps.of(magnitude = 0);
+        public Voltage fLywheelVoltage = Volts.of(0);
+        public AngularVelocity flywheelAngularVelocity = RadiansPerSecond.of(0);
+        public Temperature flywheelTemperature = Celsius.of(0);
+        public Current flywheelCurrent = Amps.of(0);
     }
 
     public default void updateInputs(FlywheelIOInputs inputs) {}
