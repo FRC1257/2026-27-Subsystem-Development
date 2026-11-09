@@ -1,4 +1,4 @@
-package frc.robot.subsystems.Flywheel;
+package frc.robot.subsystems.flywheel;
 
 import static edu.wpi.first.units.Units.Amps;
 
@@ -7,7 +7,7 @@ import static edu.wpi.first.units.Units.RadiansPerSecond;
 import static edu.wpi.first.units.Units.Volts;
 import static edu.wpi.first.units.Units.Celsius;
 
-import org.littleonrobotics.junction.AutoLog;
+import org.littletonrobotics.junction.AutoLog;
 
 import edu.wpi.first.units.measure.Angle;
 import edu.wpi.first.units.measure.AngularVelocity;
@@ -16,12 +16,6 @@ import edu.wpi.first.units.measure.Temperature;
 import edu.wpi.first.units.measure.Voltage;
 
 public interface FlywheelIO{
-    
-    import edu.wpi.first.units.measure.Angle;
-    import edu.wpi.first.units.measure.AngularVelocity;
-    import edu.wpi.first.units.measure.Current;
-    import edu.wpi.first.units.measure.Temperature;
-    import edu.wpi.first.units.measure.Voltage;
 
     @AutoLog
     public static class FlywheelIOInputs {
@@ -44,11 +38,11 @@ public interface FlywheelIO{
     }
 
     
-    public default void updateInputs(flywheelIOInputs inputs) {}
+    public default void updateInputs(FlywheelIOInputs inputs) {}
 
     public default void setVelocity(AngularVelocity velocityRadsPerSec) {}
 
-public default void stop() {}
+    public default void stop() {}
     public default void setPID(double kp, double ki, double kd) {}
 
     public default void setFF(double ks, double kv) {}
