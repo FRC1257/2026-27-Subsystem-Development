@@ -1,37 +1,44 @@
 package frc.robot.subsystems.HopperPivot;
+
 import static edu.wpi.first.units.Units.Amps;
-import static edu.wpi.first.units.Units.Celsius;
 import static edu.wpi.first.units.Units.Radians;
 import static edu.wpi.first.units.Units.RadiansPerSecond;
 import static edu.wpi.first.units.Units.Volts;
+
 import org.littletonrobotics.junction.AutoLog;
+
 import edu.wpi.first.units.measure.Angle;
 import edu.wpi.first.units.measure.AngularVelocity;
 import edu.wpi.first.units.measure.Current;
-import edu.wpi.first.units.measure.Temperature;
 import edu.wpi.first.units.measure.Voltage;
 
 public interface HopperPivotIO {
-    @AutoLog
-    public static class HopperPivotIOInputs {
-        public boolean hopperPivot1Connected = false;
-        public Angle hopperPivot1Angle  = Radians.of(0.0);
-        public AngularVelocity hopperPivot1AngularVelocity = RadiansPerSecond.of(0.0);
-        public Voltage hopperPivot1Voltage = Volts.of(0.0);
-        public Current hopperPivot1Current = Amps.of(0.0);
-        public Temperature hopperPivot1Temp = Celsius.of(0.0);
 
-        public boolean hopperPivot2Connected = false;
-        public Angle hopperPivot2Angle  = Radians.of(0.0);
-        public AngularVelocity hopperPivot2AngularVelocity = RadiansPerSecond.of(0.0);
-        public Voltage hopperPivot2Voltage = Volts.of(0.0);
-        public Current hopperPivot2Current = Amps.of(0.0);
-        public Temperature hopperPivot2Temp = Celsius.of(0.0);
-    }
-    public default void updateInputs(HopperPivotIOInputs inputs) {}
-    public default void setAngle(Angle angle, double velocity) {}
-    public default void setVoltage(Voltage voltage) {}
-    public default void stop() {}
-    public default void setPID(double kP, double kI, double kD) {}
-    public default void setFF(double ks, double kv, double kg, double ka) {}
+  @AutoLog
+  public static class HopperPivotIOInputs {
+    boolean leftpivotConnected = false;
+    Voltage leftpivotVoltage = Volts.of(0.0);
+    Angle leftpivotAngle = Radians.of(0.0);
+    AngularVelocity leftpivotVelocity = RadiansPerSecond.of(0.0); 
+    Current leftpivotCurrent = Amps.of(0.0);
+
+    boolean rightpivotConnected = false;
+    Voltage rightpivotVoltage = Volts.of(0.0);
+    Angle rightpivotAngle = Radians.of(0.0);
+    AngularVelocity rightpivotVelocity = RadiansPerSecond.of(0.0); 
+    Current rightpivotCurrent = Amps.of(0.0);
+  }
+
+  default void updateInputs(HopperPivotIOInputs inputs) {}
+
+  default void runVoltage(Voltage volts) {}
+
+  default void runAngle(double angle, double velocity) {}
+
+  default void setPID(double kp, double ki, double kd) {}
+
+  default void setFF(double ks, double kv, double kg) {}
+
+  default void stop() {}
+
 }
