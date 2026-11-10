@@ -30,7 +30,7 @@ public interface HopperPivotIO {
 
     default void updateInputs(HopperPivotIOInputs inputs) {}
 
-    default void runVoltages(Voltage volts) {}
+    default void runVoltage(Voltage volts) {}
 
     default void stop() {}
 
