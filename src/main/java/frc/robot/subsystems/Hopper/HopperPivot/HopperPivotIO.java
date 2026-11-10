@@ -19,13 +19,13 @@ public interface HopperPivotIO {
         boolean leftpivotConnected = false;
         Voltage leftpivotVoltage = Volts.of(0.0);
         Angle leftpivotAngle = Radians.of(0.0);
-        AngularVelocity leftpivotAngularVelocity = RadiansPerSecond.of(0.0);
+        AngularVelocity leftpivotVelocity = RadiansPerSecond.of(0.0);
         Current leftpivotCurrent = Amps.of(0.0);
 
         boolean rightpivotConnected = false;
         Voltage rightpivotVoltage = Volts.of(0.0);
         Angle rightpivotAngle = Radians.of(0.0);
-        AngularVelocity rightpivotAngularVelocity = RadiansPerSecond.of(0.0);
+        AngularVelocity rightpivotVelocity = RadiansPerSecond.of(0.0);
         Current rightpivotCurrent = Amps.of(0.0);
     }
     
@@ -33,7 +33,7 @@ public interface HopperPivotIO {
 
     default void runVoltage(Voltage volts) {}
 
-    default void runAngle(double angle, double velocity, double acceleration) {}
+    default void runAngle(double angle, double velocity) {}
 
     default void setPID(double kP, double kI, double kD) {}
 
