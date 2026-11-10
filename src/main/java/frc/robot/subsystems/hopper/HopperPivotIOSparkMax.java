@@ -1,110 +1,184 @@
+/*Steps for Hardware Implementation
+ * STEP 1 - imports
+ * STEP 2 - define objects
+ * STEP 3 Constructor
+ * STEP 4 - inputs
+ * STEP - overriding methods
+ */
+
 package frc.robot.subsystems.hopper;
+/*
+ * notice this package is based on the way the file is organized in the code; changes from person to person
+ */
+import static edu.wpi.first.units.Units.Amps;
+import static edu.wpi.first.units.Units.Radians;
+import static edu.wpi.first.units.Units.RadiansPerSecond;
+import static edu.wpi.first.units.Units.Volts;
+
+//implementing units - the actual values WE are going to use when coding
 
 import com.revrobotics.PersistMode;
 import com.revrobotics.REVLibError;
-import com.revrobotics.RelativeEncoder;
 import com.revrobotics.ResetMode;
-import com.revrobotics.spark.*;
+import com.revrobotics.spark.ClosedLoopSlot;
+import com.revrobotics.spark.SparkAbsoluteEncoder;
+import com.revrobotics.spark.SparkLowLevel.MotorType;
+import com.revrobotics.spark.SparkMax;
+import com.revrobotics.spark.SparkBase.ControlType;
 import com.revrobotics.spark.config.ClosedLoopConfig;
-import com.revrobotics.spark.config.SparkBaseConfig;
+import com.revrobotics.spark.config.SparkBaseConfig.IdleMode;
 import com.revrobotics.spark.config.SparkMaxConfig;
-import edu.wpi.first.math.controller.ArmFeedforward;
-import edu.wpi.first.units.measure.Angle;
-import edu.wpi.first.units.measure.AngularVelocity;
-import edu.wpi.first.units.measure.Voltage;
 
-import static edu.wpi.first.units.Units.*;
+//imports from REVLib (revrobotics); you can read what the imports are and can infer why they are needed
+
+
+import edu.wpi.first.math.controller.ArmFeedforward;
+import edu.wpi.first.math.controller.ProfiledPIDController;
+import edu.wpi.first.math.trajectory.TrapezoidProfile;
+import edu.wpi.first.units.Units;
+import edu.wpi.first.units.measure.Angle;
+import edu.wpi.first.units.measure.Voltage;
+import edu.wpi.first.units.measure.AngularVelocity;
+import frc.robot.Constants;
+
+//WPILib imports for controllers + measures (different from units)
+// measure tells what form of measurement we are using; subtle diffferent
 
 public class HopperPivotIOSparkMax implements HopperPivotIO {
-    private final SparkMax leftMotor; // <-- this is main
-    private final SparkMax rightMotor; // <-- this follow
+//ALWAYS IMPLEMENT IO FILE
+  private SparkMax leftMotor;
+  private SparkMax rightMotor;
+    
+  private SparkMaxConfig leftConfig;
+  private SparkMaxConfig rightConfig;
 
-    private final RelativeEncoder leftEncoder;
-    private final RelativeEncoder rightEncoder;
-
-    private final SparkClosedLoopController controller;
-    private final ArmFeedforward feedforward;
-
-    public HopperPivotIOSparkMax() {
-        //temp ids
-        leftMotor=new SparkMax(0, SparkLowLevel.MotorType.kBrushless);
-        rightMotor=new SparkMax(1, SparkLowLevel.MotorType.kBrushless);
-        leftEncoder= leftMotor.getEncoder();
-        rightEncoder=rightMotor.getEncoder();
-
-        SparkMaxConfig leftConfig=new SparkMaxConfig();
-
-        leftConfig
-                .idleMode(SparkBaseConfig.IdleMode.kBrake)
-                .voltageCompensation(12)
-                .smartCurrentLimit(60)
-                .inverted(false);
-
-        leftConfig.encoder.positionConversionFactor(3);
+  private ArmFeedforward feedforward;
+// all objects necessary from configs, encoders, motors, controllers
 
 
-        leftConfig.closedLoop.pid(0,0,0);
+  public HopperPivotIOSparkMax() {
+    leftMotor = new SparkMax(0, MotorType.kBrushless);
+    rightMotor = new SparkMax(1, MotorType.kBrushless);
+    //define each motor with CAN ID, either brushless or brushed
+    leftConfig = new SparkMaxConfig();
 
-        SparkMaxConfig rightConfig=new SparkMaxConfig();
-        rightConfig.apply(leftConfig);
-        rightConfig.follow(leftMotor,true);
+    leftConfig
+        .idleMode(IdleMode.kBrake)
+        .voltageCompensation(12.0)
+        .smartCurrentLimit(60)
+        .inverted(false);
 
-        controller=leftMotor.getClosedLoopController();
-        feedforward=new ArmFeedforward(0,0,0); //temp
+        //electrical configs, current limit so things don't go on fire, inverted or not (mirrored or not)
+        // voltage compensation = how much we can give it
+        // idle mode - what should it do when it does nothing (stay still, don't resist movement)
+    leftConfig
+      .encoder
+      .positionConversionFactor(2* Math.PI*1/18)
+      .velocityConversionFactor((2* Math.PI*1/18) / 60.0);
+    leftConfig
+      .closedLoop
+      .pid(1, 2, 3);
 
-        leftMotor.configure(leftConfig, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
-        rightMotor.configure(rightConfig, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
+    /* config
+     * you need to figure out what each config needs for specific subsystem; changes with each subsystem
+     * Encoder - usually for conversion factors + encoder specific conversions
+     * closed loop - defined PID values + other controllers that might be in the closed loop system
+     */
 
-        //IDK other stuff later
+    rightConfig = new SparkMaxConfig();
+    rightConfig.apply(leftConfig);
+    rightConfig.follow(leftMotor,true);
+    //when you have two motors, you MUST have two configs but you can set it to follow the other config so you're not rewriting stuff
+    //this one is inverted due to directions of motors on actual robot
+
+    leftMotor.configure(leftConfig, com.revrobotics.ResetMode.kResetSafeParameters, com.revrobotics.PersistMode.kPersistParameters); 
+    rightMotor.configure(rightConfig, com.revrobotics.ResetMode.kResetSafeParameters, com.revrobotics.PersistMode.kPersistParameters); 
+    /* Configure each motor with config
+     * tell each motor to actually implement its config
+     * fancy stuff afterwards = persisting parameters = telling the sparkmax to do the configuration NOW the minute it turns on
+     */
+    feedforward = new ArmFeedforward(3, 4, 5);
+    //define feedforward object with necessary values
+    
+  }
+
+
+  
+  @Override
+  public void updateInputs(HopperPivotIOInputs inputs) {
+    inputs.leftpivotVelocity = RadiansPerSecond.of(leftMotor.getEncoder().getVelocity());
+    inputs.leftpivotVoltage = Volts.of(leftMotor.getAppliedOutput() *12);
+    inputs.rightpivotVelocity = RadiansPerSecond.of(rightMotor.getEncoder().getVelocity());
+    inputs.rightpivotVoltage = Volts.of(rightMotor.getAppliedOutput()*12);
+    inputs.leftpivotAngle = Radians.of(leftMotor.getEncoder().getPosition());
+    inputs.rightpivotAngle = Radians.of(rightMotor.getEncoder().getPosition());
+
+    inputs.leftpivotCurrent = Amps.of(leftMotor.getOutputCurrent());
+    inputs.rightpivotCurrent = Amps.of(rightMotor.getOutputCurrent());
+
+    inputs.leftpivotConnected = leftMotor.getLastError() == REVLibError.kOk;
+    inputs.rightpivotConnected = rightMotor.getLastError() == REVLibError.kOk;
+
+    /*update inputs
+     * use getters provided by REVLib + units from WPILib to actually collect the data we want from the motors
+     * gets stored in Advantage Kit
+     */
+
+  }
+
+  @Override
+  public void runVoltage(Voltage volts) {
+    leftMotor.setVoltage(volts);
+    //simple since REVLib's method for this is literally js setVoltage
+  }
+
+  @Override
+  public void runAngle(double angle, double velocity) {
+    leftMotor.getClosedLoopController().setSetpoint(
+      angle,
+      ControlType.kPosition,
+      ClosedLoopSlot.kSlot0,
+      feedforward.calculate(angle, velocity)
+    );
+
+    /* What the heck is happening?
+     * 1st - get the closed loop controller
+     * setSetpoint = REVLib method for how to get the motors to reach a setpoint
+     * What are we giving this method?
+     * angle - parameter - distance the pivot should go
+     * control type - defining that the setpoint is a position variable and not something else
+     * closed loop slot - can have various slots with various different sets of pid values; not something we do so we keep it at Slot 0 (the first one)
+     * feedforward - calculates the voltage necessary to do this whole task taking into account the angle we give + the velocity we give it
+     */
+
+  }
+
+
+  @Override
+  public void stop() {
+    leftMotor.stopMotor();
+    rightMotor.stopMotor();
+    //simple since REVLib's method for this is literally js stopMotor
+  }
+
+  @Override
+    public void setPID(double kP, double kI, double kD) {
+      leftMotor.configure(
+        new SparkMaxConfig()
+          .apply(new ClosedLoopConfig()
+            .p(kP)
+            .i(kI)
+            .d(kD)),
+        ResetMode.kNoResetSafeParameters,
+        PersistMode.kPersistParameters);
     }
-    @Override
-    public void updateInputs(HopperPivotIOInputs inputs) {
-        inputs.leftPivotConnected=leftMotor.getLastError()== REVLibError.kOk;
-        inputs.rightPivotConnected=rightMotor.getLastError()== REVLibError.kOk;
+    //available in documentation; telling the motor's config to reset its closed loop with THESE PID values rather than what we defined earlier
 
-        inputs.leftPivotVoltage=Volts.of(leftMotor.getAppliedOutput()*12);
-        inputs.rightPivotVoltage=Volts.of(rightMotor.getAppliedOutput()*12);
-
-        inputs.leftPivotAngle=Radians.of(leftEncoder.getPosition());
-        inputs.rightPivotAngle=Radians.of(rightEncoder.getPosition());
-
-        inputs.leftPivotVelocity=RadiansPerSecond.of(leftEncoder.getVelocity());
-        inputs.rightPivotVelocity=RadiansPerSecond.of(rightEncoder.getVelocity());
-
-        inputs.leftPivotCurrent=Amps.of(leftMotor.getOutputCurrent());
-        inputs.rightPivotCurrent=Amps.of(rightMotor.getOutputCurrent());
-    }
-
-    @Override
-    public void runVoltage(Voltage voltage) {
-        leftMotor.setVoltage(voltage);
-    }
-
-    @Override
-    public void runAngle(Angle angle, AngularVelocity velocity) {
-        controller.setSetpoint(angle.in(Radians), SparkBase.ControlType.kPosition, ClosedLoopSlot.kSlot0,feedforward.calculate(angle.in(Radians),velocity.in(RadiansPerSecond)));
-
-    }
-
-    @Override
-    public void setPID(double kp, double ki, double kd) {
-        leftMotor.configure(new SparkMaxConfig()
-                .apply(new ClosedLoopConfig()
-                        .p(kp)
-                        .i(ki)
-                        .d(kd)),
-                ResetMode.kResetSafeParameters,
-                PersistMode.kPersistParameters
-        );
-    }
-
-    @Override
+  @Override
     public void setFF(double ks, double kv, double kg) {
-        feedforward.setKs(ks);
-        feedforward.setKv(ks);
-        feedforward.setKg(kg);
+      feedforward.setKs(ks);
+      feedforward.setKv(kv);
+      feedforward.setKg(kg);
     }
-
-    @Override
-    public void stop() {}
+    //easy enough; js setters
 }

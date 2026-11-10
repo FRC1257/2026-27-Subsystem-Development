@@ -1,35 +1,44 @@
 package frc.robot.subsystems.hopper;
 
-import edu.wpi.first.units.measure.*;
+import static edu.wpi.first.units.Units.Amps;
+import static edu.wpi.first.units.Units.Radians;
+import static edu.wpi.first.units.Units.RadiansPerSecond;
+import static edu.wpi.first.units.Units.Volts;
+
 import org.littletonrobotics.junction.AutoLog;
 
-import static edu.wpi.first.units.Units.*;
+import edu.wpi.first.units.measure.Angle;
+import edu.wpi.first.units.measure.AngularVelocity;
+import edu.wpi.first.units.measure.Current;
+import edu.wpi.first.units.measure.Voltage;
 
 public interface HopperPivotIO {
-    @AutoLog
-    public static class HopperPivotIOInputs {
-        boolean leftPivotConnected=false;
-        Voltage leftPivotVoltage=Volts.of(0);
-        Angle leftPivotAngle=Radians.of(0);
-        AngularVelocity leftPivotVelocity=RadiansPerSecond.of(0);
-        Current leftPivotCurrent=Amps.of(0);
 
-        boolean rightPivotConnected=false;
-        Voltage rightPivotVoltage=Volts.of(0);
-        Angle rightPivotAngle=Radians.of(0);
-        AngularVelocity rightPivotVelocity=RadiansPerSecond.of(0);
-        Current rightPivotCurrent=Amps.of(0);
-    }
+  @AutoLog
+  public static class HopperPivotIOInputs {
+    boolean leftpivotConnected = false;
+    Voltage leftpivotVoltage = Volts.of(0.0);
+    Angle leftpivotAngle = Radians.of(0.0);
+    AngularVelocity leftpivotVelocity = RadiansPerSecond.of(0.0); 
+    Current leftpivotCurrent = Amps.of(0.0);
 
-    default void updateInputs(HopperPivotIOInputs inputs) {}
+    boolean rightpivotConnected = false;
+    Voltage rightpivotVoltage = Volts.of(0.0);
+    Angle rightpivotAngle = Radians.of(0.0);
+    AngularVelocity rightpivotVelocity = RadiansPerSecond.of(0.0); 
+    Current rightpivotCurrent = Amps.of(0.0);
+  }
 
-    default void runVoltage(Voltage voltage) {}
+  default void updateInputs(HopperPivotIOInputs inputs) {}
 
-    default void runAngle(Angle angle, AngularVelocity velocity) {}
+  default void runVoltage(Voltage volts) {}
 
-    default void setPID(double kp, double ki, double kd) {}
+  default void runAngle(double angle, double velocity) {}
 
-    default void setFF(double ks, double kv, double kg) {}
+  default void setPID(double kp, double ki, double kd) {}
 
-    default void stop() {}
+  default void setFF(double ks, double kv, double kg) {}
+
+  default void stop() {}
+
 }
