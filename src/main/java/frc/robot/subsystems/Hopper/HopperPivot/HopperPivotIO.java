@@ -15,7 +15,7 @@ import edu.wpi.first.units.measure.Voltage;
 public interface HopperPivotIO {
     
     @AutoLog
-    public static class HopperPivotIoInputs{
+    public static class HopperPivotIOInputs{
         boolean leftpivotConnected = false;
         Voltage leftpivotVoltage = Volts.of(0);
         Angle leftpivotAngle = Radians.of(0);
@@ -29,7 +29,7 @@ public interface HopperPivotIO {
         Current rightpivotCurrent = Amps.of(0);
     }
 
-    default void updateInputs(HopperPivotIoInputs inputs) {}
+    default void updateInputs(HopperPivotIOInputs inputs) {}
 
     default void runVoltage(Voltage volts) {}
 
