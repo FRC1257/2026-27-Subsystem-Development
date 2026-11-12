@@ -1,3 +1,5 @@
+package frc.robot.subsystems.Flywheel;
+
 public class FlywheelConstants {
     public static final int flywheelMotorCANID = 0;
     public static final int flywheelFollowerMotorCANID = 0;
