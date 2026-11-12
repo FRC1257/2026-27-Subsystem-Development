@@ -2,6 +2,7 @@
 package frc.robot.subsystems.Roller;
 
 import static edu.wpi.first.units.Units.Amps;
+import static edu.wpi.first.units.Units.MetersPerSecond;
 import static edu.wpi.first.units.Units.Radians;
 import static edu.wpi.first.units.Units.RadiansPerSecond;
 import static edu.wpi.first.units.Units.Volts;
@@ -28,6 +29,8 @@ import edu.wpi.first.units.Units;
 import edu.wpi.first.units.measure.Angle;
 import edu.wpi.first.units.measure.Voltage;
 import edu.wpi.first.units.measure.AngularVelocity;
+import edu.wpi.first.units.measure.LinearVelocity;
+import edu.wpi.first.units.measure.Velocity;
 import frc.robot.Constants;
 
 
@@ -72,11 +75,13 @@ public class RollerIOSparkMax implements RollerIO {
   
   @Override
   public void updateInputs(RollerIOInputs inputs) {
-    inputs.rollerVelocity = RadiansPerSecond.of(mainMotor.getEncoder().getVelocity());
+    inputs.rollerVelocity = MetersPerSecond.of(mainMotor.getEncoder().getVelocity());
     inputs.rollerVoltage = Volts.of(mainMotor.getAppliedOutput() *12);
-    inputs.rollerAngle = Radians.of(mainMotor.getEncoder().getPosition());
     inputs.rollerCurrent = Amps.of(mainMotor.getOutputCurrent());
+
     inputs.rollerConnected = mainMotor.getLastError() == REVLibError.kOk;
+   
+
   }
 
   @Override
@@ -84,7 +89,10 @@ public class RollerIOSparkMax implements RollerIO {
     mainMotor.setVoltage(volts);
   }
 
- 
+  @Override
+  public void runVelocity(LinearVelocity velocity) {
+   
+}
 
 
   @Override
