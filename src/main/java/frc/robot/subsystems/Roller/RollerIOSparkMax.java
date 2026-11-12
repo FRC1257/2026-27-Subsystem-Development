@@ -72,14 +72,11 @@ public class RollerIOSparkMax implements RollerIO {
   
   @Override
   public void updateInputs(RollerIOInputs inputs) {
-    inputs.mainVelocity = RadiansPerSecond.of(mainMotor.getEncoder().getVelocity());
-    inputs.mainVoltage = Volts.of(mainMotor.getAppliedOutput() *12);
-    inputs.mainAngle = Radians.of(mainMotor.getEncoder().getPosition());
-    inputs.mainCurrent = Amps.of(mainMotor.getOutputCurrent());
-
-    inputs.mainConnected = mainMotor.getLastError() == REVLibError.kOk;
-   
-
+    inputs.rollerVelocity = RadiansPerSecond.of(mainMotor.getEncoder().getVelocity());
+    inputs.rollerVoltage = Volts.of(mainMotor.getAppliedOutput() *12);
+    inputs.rollerAngle = Radians.of(mainMotor.getEncoder().getPosition());
+    inputs.rollerCurrent = Amps.of(mainMotor.getOutputCurrent());
+    inputs.rollerConnected = mainMotor.getLastError() == REVLibError.kOk;
   }
 
   @Override

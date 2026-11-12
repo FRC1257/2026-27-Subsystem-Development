@@ -21,11 +21,8 @@ public interface RollerIO {
         Angle rollerAngle = Radians.of(0.0);
         AngularVelocity rollerAngularVelocity = RadiansPerSecond.of(0.0);
         Current rollerCurrent = Amps.of(0.0);
-        public AngularVelocity mainVelocity;
-        public Voltage mainVoltage;
-        public Angle mainAngle;
-        public Current mainCurrent;
-        public boolean mainConnected;
+        public AngularVelocity rollerVelocity;
+       
     }
 
     default void updateInputs(RollerIOInputs inputs) {}
