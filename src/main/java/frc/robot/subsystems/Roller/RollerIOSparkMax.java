@@ -84,18 +84,7 @@ public class RollerIOSparkMax implements RollerIO {
     mainMotor.setVoltage(volts);
   }
 
-  @Override
-  public void runAngle(double angle, double velocity) {
-    mainMotor.getClosedLoopController().setSetpoint(
-      angle,
-      ControlType.kPosition,
-      ClosedLoopSlot.kSlot0,
-      feedforward.calculate(angle, velocity)
-    );
-
-   
-
-  }
+ 
 
 
   @Override
