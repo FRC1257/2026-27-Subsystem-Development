@@ -1,3 +1,5 @@
+package frc.robot.subsystems.HopperPivot;
+
 public class HopperPivotConstants {
     //arbitrary numbers for now
     public static final int HOPPER_PIVOT_1_ID = 0;
