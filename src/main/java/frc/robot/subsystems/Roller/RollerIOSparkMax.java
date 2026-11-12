@@ -11,6 +11,8 @@ import com.revrobotics.ResetMode;
 import com.revrobotics.spark.ClosedLoopSlot;
 import com.revrobotics.spark.SparkAbsoluteEncoder;
 import com.revrobotics.spark.SparkLowLevel.MotorType;
+import com.revrobotics.spark.SparkClosedLoopController;
+import edu.wpi.first.math.controller.SimpleMotorFeedforward;
 import com.revrobotics.spark.SparkMax;
 import com.revrobotics.spark.SparkBase.ControlType;
 import com.revrobotics.spark.config.ClosedLoopConfig;
@@ -19,7 +21,6 @@ import com.revrobotics.spark.config.SparkMaxConfig;
 
 import edu.wpi.first.math.controller.ArmFeedforward;
 import edu.wpi.first.math.controller.ProfiledPIDController;
-import edu.wpi.first.math.controller.SimpleMotorFeedforward;
 import edu.wpi.first.math.trajectory.TrapezoidProfile;
 import edu.wpi.first.units.Units;
 import edu.wpi.first.units.measure.Angle;
@@ -31,6 +32,7 @@ public class RollerIOSparkMax implements RollerIO {
     private SparkMax motor;
     private SparkMaxConfig motorConfig;
     private SimpleMotorFeedforward feedforward;
+    private SparkClosedLoopController controller; 
     public RollerIOSparkMax() {
         motor = new SparkMax(RollerConstants.ROLLER_MOTOR_ID, MotorType.kBrushless);
         motorConfig = new SparkMaxConfig();
@@ -47,6 +49,7 @@ public class RollerIOSparkMax implements RollerIO {
             .pid(RollerConstants.p, RollerConstants.i, RollerConstants.d);
         motor.configure(motorConfig, com.revrobotics.ResetMode.kResetSafeParameters, com.revrobotics.PersistMode.kPersistParameters);
         feedforward = new SimpleMotorFeedforward(RollerConstants.ks, RollerConstants.kv);
+        controller = motor.getClosedLoopController();
     }
     @Override
     public void updateInputs(RollerIOInputs inputs) {
@@ -57,8 +60,13 @@ public class RollerIOSparkMax implements RollerIO {
         inputs.motorConnected = motor.getLastError() == REVLibError.kOk;
     }
     @Override
-    public void runVoltage(Voltage volts) {
+    public void setVoltage(Voltage volts) {
         motor.setVoltage(volts);
+    }
+    @Override
+    public void setVelocity(AngularVelocity velocityRadsPerSec) {
+        double feedforwardVolts = feedforward.calculate(velocityRadsPerSec.in(RadiansPerSecond));
+        controller.setSetpoint(velocityRadsPerSec.in(RadiansPerSecond), ControlType.kVelocity, ClosedLoopSlot.kSlot0, feedforwardVolts);
     }
     @Override
     public void setPID(double kp, double ki, double kd) {

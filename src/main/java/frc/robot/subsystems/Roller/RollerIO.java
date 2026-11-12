@@ -22,7 +22,8 @@ public interface RollerIO {
         Current motorCurrent = Amps.of(0.0);
     }
     default void updateInputs(RollerIOInputs inputs) {}
-    default void runVoltage(Voltage volts) {}
+    default void setVoltage(Voltage volts) {}
+    default void setVelocity(AngularVelocity velocityRadsPerSec) {}
     default void setPID(double kp, double ki, double kd) {}
     default void setFF(double ks, double kv) {}
     default void stop() {}
