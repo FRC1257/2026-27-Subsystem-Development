@@ -45,44 +45,6 @@ import frc.robot.Constants;
 // measure tells what form of measurement we are using; subtle diffferent
 
 public class HopperPivotIOSparkMax implements HopperPivotIO {
-<<<<<<< HEAD
-    private SparkMax leftMotor;
-    private SparkMax rightMotor;
-    
-    private SparkMaxConfig leftConfig;
-    private SparkMaxConfig rightConfig;
-
-    private ArmFeedforward feedforward;
-   
-    public HopperPivotIOSparkMax() {
-        leftMotor = new SparkMax(0, MotorType.kBrushless);
-        rightMotor = new SparkMax(1, MotorType.kBrushless);
-
-        leftConfig = new SparkMaxConfig();
-
-        leftConfig
-        .idleMode(IdleMode.kBrake);
-
-        leftConfig
-            .encoder
-                .positionConversionFactor(3);
-        leftConfig
-            .closedLoop
-            .pid(1, 2, 3);
-
-        rightConfig = new SparkMaxConfig();
-        rightConfig.apply(leftConfig);
-        rightConfig.follow(leftMotor,true);
-
-    leftMotor.configure(leftConfig, com.revrobotics.ResetMode.kResetSafeParameters, com.revrobotics.PersistMode.kPersistParameters); 
-    rightMotor.configure(rightConfig, com.revrobotics.ResetMode.kResetSafeParameters, com.revrobotics.PersistMode.kPersistParameters); 
-
-    feedforward = new ArmFeedforward(3, 4,5);
-
-    }
-    
-    
-=======
 //ALWAYS IMPLEMENT IO FILE
   private SparkMax leftMotor;
   private SparkMax rightMotor;
@@ -219,5 +181,4 @@ public class HopperPivotIOSparkMax implements HopperPivotIO {
       feedforward.setKg(kg);
     }
     //easy enough; js setters
->>>>>>> dadaa9d64123953ba1e93a96b35e7461207c84ec
 }
