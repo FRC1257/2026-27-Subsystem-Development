@@ -67,7 +67,7 @@ public class RollerIOSparkMax implements RollerIO {
 
     mainMotor.configure(mainConfig, com.revrobotics.ResetMode.kResetSafeParameters, com.revrobotics.PersistMode.kPersistParameters); 
     
-    feedforward = new ArmFeedforward(3, 4, 5);
+    feedforward = new ArmFeedforward(3, 4, 5); //not arm feedforward bc its a roller 
     
   }
 
@@ -117,5 +117,12 @@ public class RollerIOSparkMax implements RollerIO {
       feedforward.setKs(ks);
       feedforward.setKv(kv);
       feedforward.setKg(kg);
+      //you need ka not kg
     }
 }
+
+/*
+ * simple FF not arm
+ * needed setBreakmode
+ * 27/30
+ */

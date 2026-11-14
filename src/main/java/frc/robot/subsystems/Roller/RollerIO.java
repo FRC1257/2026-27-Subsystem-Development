@@ -23,6 +23,7 @@ public interface RollerIO {
         AngularVelocity rollerAngularVelocity = RadiansPerSecond.of(0.0);
         Current rollerCurrent = Amps.of(0.0);
         LinearVelocity rollerVelocity = MetersPerSecond.of(0.0);
+        //nice adding linear velocity
     }
 
     default void updateInputs(RollerIOInputs inputs) {}
