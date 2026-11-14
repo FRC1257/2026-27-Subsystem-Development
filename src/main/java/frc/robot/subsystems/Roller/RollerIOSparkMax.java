@@ -67,6 +67,7 @@ public class RollerIOSparkMax implements RollerIO {
     public void setVelocity(AngularVelocity velocityRadsPerSec) {
         double feedforwardVolts = feedforward.calculate(velocityRadsPerSec.in(RadiansPerSecond));
         controller.setSetpoint(velocityRadsPerSec.in(RadiansPerSecond), ControlType.kVelocity, ClosedLoopSlot.kSlot0, feedforwardVolts);
+        //needed to getClosedLoopController to setsetpoint
     }
     @Override
     public void setPID(double kp, double ki, double kd) {
@@ -90,3 +91,8 @@ public class RollerIOSparkMax implements RollerIO {
     }
 }
 
+/*
+ * great job; no major comments
+ * one issue in setVelocity + missing temp
+ * 29/30
+ */
