@@ -79,7 +79,7 @@ public class RollerIOSparkMax implements RollerIO {
     motor.stopMotor();
    }
 
-   @Override
+   @Override //you named it config so that's the error
     public void setBrakeMode(boolean enabled) {
         config.idleMode(enabled ? IdleMode.kBrake : IdleMode.kCoast);
         motor.configure(
@@ -102,6 +102,13 @@ public class RollerIOSparkMax implements RollerIO {
     public void setFF(double ks, double kv, double kg) {
       feedforward.setKs(ks);
       feedforward.setKv(kv);
-      feedforward.setKg(kg);
+      feedforward.setKg(kg); //not setKg for simple FF
     }
 }
+
+/*nice job
+ * eroor w/ naming config led to errors
+ * setKg not for Simple FF
+ * good job adding setBreakMode
+ * 27/30
+ */
