@@ -70,7 +70,7 @@ public class RollerIOSparkMax implements RollerIO {
         motor.setVoltage(volts);
     }
 
-    @Override
+    @Override //not runAngle bc it's a roller shoudl have been set velocity
     public void runAngle(double angle, double velocity) {
         motor.getClosedLoopController().setSetpoint(
             angle,
@@ -102,3 +102,8 @@ public class RollerIOSparkMax implements RollerIO {
     }
 }
 
+/*
+ * rlly impressive considering this was ur first meeting back
+ * since it's a roller we don't need runAngle but setVelocity
+ * 26/30
+ */
