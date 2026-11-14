@@ -1,5 +1,5 @@
 package frc.robot.subsystems;
-
+//this file is not in roller folder
 import static edu.wpi.first.units.Units.Amps;
 import static edu.wpi.first.units.Units.RadiansPerSecond;
 import static edu.wpi.first.units.Units.Volts;
@@ -76,3 +76,9 @@ public class RollerIOSparkMax implements RollerIO{
       motor.stopMotor();
     }
 }
+
+/*
+ * no setVelocity
+ * organization error
+ * 24/30
+ */
