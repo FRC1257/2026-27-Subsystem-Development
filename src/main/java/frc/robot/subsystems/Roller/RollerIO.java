@@ -1,4 +1,4 @@
-package frc.robot.subsystems.HopperPivot;
+package frc.robot.subsystems.HopperPivot; //bad copy paste
 
 import static edu.wpi.first.units.Units.Amps;
 import static edu.wpi.first.units.Units.RadiansPerSecond;

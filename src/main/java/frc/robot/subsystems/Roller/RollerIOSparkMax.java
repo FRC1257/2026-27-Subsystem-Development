@@ -33,7 +33,7 @@ public class RollerIOSparkMax implements RollerIO {
 
   public RollerIOSparkMax() {
 
-    motor = new SparkMax(1, MotorType.kBrushless);
+    motor = new SparkMax(1, MotorType.kBrushless); //SparkMax.MotorType
     config = new SparkMaxConfig();
 
     config
@@ -69,10 +69,10 @@ public class RollerIOSparkMax implements RollerIO {
 
   
   @Override
-  public void updateInputs(HopperPivotIOInputs inputs) {
+  public void updateInputs(HopperPivotIOInputs inputs) { //bad copy/paste
     inputs.rollerVelocity = RadiansPerSecond.of(motor.getEncoder().getVelocity());
     inputs.rollerVoltage = Volts.of(motor.getAppliedOutput() *12);
-    inputs.rollerAngle = Radians.of(motor.getEncoder().getPosition());
+    inputs.rollerAngle = Radians.of(motor.getEncoder().getPosition()); //you didn't import radians
     
 
     inputs.rollerCurrent = Amps.of(motor.getOutputCurrent());
@@ -89,7 +89,7 @@ public class RollerIOSparkMax implements RollerIO {
   }
 
   @Override
-  public void runAngle(double angle, double velocity) {
+  public void runAngle(double angle, double velocity) { //you don't need this for a roller
     motor.getClosedLoopController().setSetpoint(
       angle,
       ControlType.kPosition,
@@ -134,7 +134,14 @@ public class RollerIOSparkMax implements RollerIO {
     public void setFF(double ks, double kv, double kg) {
       feedforward.setKs(ks);
       feedforward.setKv(kv);
-      feedforward.setKg(kg);
+      feedforward.setKg(kg); //won't work for simple feedforward
     }
 
 }
+
+/*
+ * bad copy paste
+ * build failed due to fixable errors
+ * errors
+ * 18/30
+ */
