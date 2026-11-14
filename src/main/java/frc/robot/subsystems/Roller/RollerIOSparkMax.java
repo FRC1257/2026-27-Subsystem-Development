@@ -88,3 +88,7 @@ public class RollerIOSparkMax implements RollerIO {
         feedforward.setKv(kv);
     }
 }
+
+//missing setVelocity
+// missing velocity input
+//25/30

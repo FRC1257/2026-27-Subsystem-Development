@@ -15,6 +15,7 @@ public interface RollerIO {
         boolean rollerConnected = false;
         Voltage rollerVoltage = Volts.of(0);
         Current rollerCurrent = Amps.of(0);
+        //velocity?
     }
 
     default void updateInputs(RollerIOInputs inputs) {}
