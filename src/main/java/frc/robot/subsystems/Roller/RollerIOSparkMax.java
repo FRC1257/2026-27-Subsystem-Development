@@ -104,4 +104,11 @@ public class RollerIOSparkMax implements RollerIO{
     }
     }
 
+    /*
+     * no setVelocity
+     * didn't need armfeedforward
+     * need to log temp
+     * 25/30
+     */
+
 
