@@ -78,7 +78,7 @@ public class RollerIOSparkMax implements RollerIO {
     inputs.rollerVelocity = MetersPerSecond.of(mainMotor.getEncoder().getVelocity());
     inputs.rollerVoltage = Volts.of(mainMotor.getAppliedOutput() *12);
     inputs.rollerCurrent = Amps.of(mainMotor.getOutputCurrent());
-
+    //needed to pull both velocities 
     inputs.rollerConnected = mainMotor.getLastError() == REVLibError.kOk;
    
 
@@ -91,7 +91,7 @@ public class RollerIOSparkMax implements RollerIO {
 
   @Override
   public void runVelocity(LinearVelocity velocity) {
-   
+   //???
 }
 
 
@@ -124,5 +124,5 @@ public class RollerIOSparkMax implements RollerIO {
 /*
  * simple FF not arm
  * needed setBreakmode
- * 27/30
+ * 25/30
  */
