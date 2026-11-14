@@ -57,7 +57,7 @@ public class RollerIOSparkMax implements RollerIO {
 
         rollerMotor.configure(rollerConfig, com.revrobotics.ResetMode.kResetSafeParameters, com.revrobotics.PersistMode.kPersistParameters);
 
-        feedforward = new ArmFeedforward(3, 4, 5);
+        feedforward = new ArmFeedforward(3, 4, 5); //no armfeedforward should be simple
     }
 
     @Override
@@ -99,3 +99,8 @@ public class RollerIOSparkMax implements RollerIO {
     }
     
 }
+
+//missing set velocity
+//no correct feedforward
+//tiny organization error
+//24/30
