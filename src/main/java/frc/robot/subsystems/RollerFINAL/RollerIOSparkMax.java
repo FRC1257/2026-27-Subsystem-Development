@@ -49,7 +49,7 @@ public class RollerIOSparkMax implements RollerIO {
   private SparkMax OneMotor;    
   private SparkMaxConfig OneConfig;
 
-  private ArmFeedforward feedforward;
+  private ArmFeedforward feedforward; //not armff
 // all objects necessary from configs, encoders, motors, controllers
 
 
@@ -155,3 +155,8 @@ public class RollerIOSparkMax implements RollerIO {
     }
     //easy enough; js setters
 }
+
+//need setVelocity
+//naming structure is not very efficient lowk
+// not arm ff but simple FF
+// 24/30
