@@ -112,3 +112,6 @@ public class RollerIOSparkMax implements RollerIO {
       rollerFeedforward.setKa(ka);
     }
 }
+
+//missing setVelocity
+//26/30
