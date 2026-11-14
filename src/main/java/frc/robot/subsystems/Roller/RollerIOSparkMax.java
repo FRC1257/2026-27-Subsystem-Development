@@ -52,7 +52,7 @@ public class RollerIOSparkMax implements RollerIO {
     @Override
     public void updateInputs(RollerIOInputs inputs) {
         inputs.rollerVoltage = Volts.of(rollerMotor.getAppliedOutput() *12);
-        //velocity?
+        //velocity? //yea
         inputs.rollerCurrent = Amps.of(rollerMotor.getOutputCurrent());
         inputs.rollerConnected = rollerMotor.getLastError() == REVLibError.kOk;
     }
@@ -87,3 +87,10 @@ public class RollerIOSparkMax implements RollerIO {
             feedforward.setKv(kv);
         }
     }
+
+/*
+ * missing velocity inputs
+ * no set velocity
+ * everythign else looks great
+ * 26/30
+ */
