@@ -28,9 +28,9 @@ import edu.wpi.first.units.measure.Voltage;
 import frc.robot.Constant
 
 
-public class RollerSystemIOSparkMax implements RollerSystemIo {
+public class RollerSystemIOSparkMax implements RollerSystemIo { //it's IO not io
     private final SparkFlex motor;
-    private final SparkFlexConfig config;
+    private final SparkFlexConfig config; 
 
 
     public RollerSystemIOSparkMax() {
@@ -55,3 +55,10 @@ public class RollerSystemIOSparkMax implements RollerSystemIo {
         feedforward = new FeedForward(1,2,3);
     }
 }
+
+/* nothing after config
+ * build will fail bc you're missing a lot of semicolons
+ * lot of spelling errors
+ * you need to follow naming system
+ * 15/30
+ */

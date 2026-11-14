@@ -1,4 +1,4 @@
-package frc.robot.subsystems.RollerSystem;
+package frc.robot.subsystems.RollerSystem; //not what you named the folder
 
 import static edu.wpi.first.units.Units.Amps;
 import static edu.wpi.first.units.Units.Radians;
@@ -24,7 +24,7 @@ public interface RollerSystemIO {
         public Temperature RollerSystemTemperature = Celsius.of(0.0);
 
         public Angle motorAngle = Radians.of(0.0)
-
+        //missing semicolons
         public Current motorCurrent = Amps.of(0.0)
 
     }
@@ -32,6 +32,8 @@ public interface RollerSystemIO {
     public void updateInputs(RollerSystemIOInputs inputs) {}
     
     public void setVelocity(RollerSystemAngularVelocity velocityRadsPerSec)
+    //it's js angular velocity that's the variable type
+    //more missing semicolons
    
     public void setVoltage(Voltage voltage) {}
     
