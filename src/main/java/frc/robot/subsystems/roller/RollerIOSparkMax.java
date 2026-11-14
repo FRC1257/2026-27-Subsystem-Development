@@ -50,7 +50,7 @@ public class RollerIOSparkMax implements RollerIO {
         inputs.velocity=RadiansPerSecond.of(encoder.getVelocity());
         inputs.current=Amp.of(motor.getOutputCurrent());
         inputs.motorConnected=motor.getLastError()== REVLibError.kOk;
-        inputs.angle=Radians.of(encoder.getPosition());
+        inputs.angle=Radians.of(encoder.getPosition()); //don't need angle
     }
 
     @Override
@@ -59,7 +59,7 @@ public class RollerIOSparkMax implements RollerIO {
     }
 
     @Override
-    public void runVelocity(Velocity velocity) {
+    public void runVelocity(Velocity velocity) { //needed AngularVecloty here not regular
         motor.getClosedLoopController().setSetpoint(
                 velocity.magnitude(),
                 SparkBase.ControlType.kVelocity,
@@ -94,3 +94,11 @@ public class RollerIOSparkMax implements RollerIO {
         ff.setKa(ka);
     }
 }
+
+/* 
+ * no major issues; great job
+ * velocity shoudl have been angular velocity that's why its underlined in yellow
+ * didn't need angle; always need temp
+ * shoudl have setBreak Mode
+ * 29/30
+ */
