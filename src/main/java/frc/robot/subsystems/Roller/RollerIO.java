@@ -5,7 +5,7 @@ import static edu.wpi.first.units.Units.Radians;
 import static edu.wpi.first.units.Units.RadiansPerSecond;
 import static edu.wpi.first.units.Units.Volts;
 
-import org.littletonrobotics.junction.Autolog;
+import org.littletonrobotics.junction.Autolog; //needs to be capital L
 
 import edu.wpi.first.units.measure.Angle;
 import edu.wpi.first.units.measure.AngularVelocity;
@@ -20,7 +20,7 @@ public interface RollerIO {
         public Voltage motorVoltage = Volts.of(magnitude:0,0);
         public AngularVelocity motorAngularVelocity = RadiansPerSecond.or(magnitude:0,0);
         public Current motorCurrent = Amps.of(magnitude:0,0);
-        public Angle motorAngle = Radians.of(magnitude:0,0);
+        public Angle motorAngle = Radians.of(magnitude:0,0); //don't need magnitude: (js 0)
     }
 
     default void updateInputs(RollerIOInputs inputs) {}

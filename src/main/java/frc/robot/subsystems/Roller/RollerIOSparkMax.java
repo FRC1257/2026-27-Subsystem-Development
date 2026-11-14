@@ -34,23 +34,23 @@ public class RollerIOSparkMax implements RollerIO {
     private final SparkFlex motor;
 
     private final RelativeEncoder encoder;
-
+    //why???
     private final SparkFlexConfig rollerConfig;
-
     private final SparkClosedLoopController controller;
+    //why
     private SimpleMotorFeedforward feedforward;
 
     public RollerIOSparkMax() {
 
         motor = new SparkFlex(RollerConstants.ROLLER_MOTOR_ID, SparkFlex.MotorType.kBrushless);
-        
+        //why sparkFlex
         encoder = motor.getEncoder();
 
         rollerConfig = new SparkFlexConfig();
 
         rollerConfig
             .smartCurrentLimit(60)
-            .idleMode(IdleMode.kCoast)
+            .idleMode(IdleMode.kCoast) //nice
             .voltageCompensation(12.0)
             .inverted(true);
 
@@ -72,3 +72,9 @@ public class RollerIOSparkMax implements RollerIO {
     motor.configure(rollerConfig, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
 }
 }
+
+/*
+ * nothing beyond config + questionable choices
+ * there is no roller constants so errors due to that
+ * 12/30
+ */
