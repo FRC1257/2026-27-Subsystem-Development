@@ -12,21 +12,23 @@ import edu.wpi.first.units.measure.AngularVelocity;
 import edu.wpi.first.units.measure.Current;
 import edu.wpi.first.units.measure.Voltage;
 
-public interface HooperPivotIO {
+public interface HopperPivotIO{
     @AutoLog
     public static class HopperPivotIOInputs {
         boolean leftpivotConnected = false;
-        Voltage leftpivotVoltage = Volts.of(0)
-        Angle leftpivotAngle =Radians.of(0)
-        AngularVelocity leftpivotVelocity = RadiansPerSecond.of(0)
-        Current leftpivotCurrent = Amps.of(0)
+        Voltage leftpivotVoltage = Volts.of(0);
+        Angle leftpivotAngle =Radians.of(0);
+        AngularVelocity leftpivotVelocity = RadiansPerSecond.of(0);
+        Current leftpivotCurrent = Amps.of(0);
 
         boolean rightpivotConnected = false;
-        Voltage rightpivotVoltage = Volts.of(0)
-        Angle rightpivotAngle =Radians.of(0)
-        AngularVelocity rightpivotVelocity = RadiansPerSecond.of(0)
-        Current rightpivotCurrent = Amps.of(0)
+        Voltage rightpivotVoltage = Volts.of(0);
+        Angle rightpivotAngle =Radians.of(0);
+        AngularVelocity rightpivotVelocity = RadiansPerSecond.of(0);
+        Current rightpivotCurrent = Amps.of(0);
     }
+
+    //you need to addd semicolon at the end
 
     default void updateInputs(HopperPivotIOInputs inputs) {}
     default void runVoltage(Voltage volts) {}
