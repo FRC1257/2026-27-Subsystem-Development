@@ -25,7 +25,7 @@ public interface HopperPivotIO {
         boolean rightpivotConnected = false;
         Voltage rightpivotVoltage = Volts.of(0.0);
         Angle rightpivotAngle = Radians.of(0.0);
-        AngularVelocity rightpivotAngularVelocity = RadiansPerSecond.of(magnitude:0.0);
+        AngularVelocity rightpivotAngularVelocity = RadiansPerSecond.of(0.0);
         Current rightpivotCurrent = Amps.of(0.0);
     }
 
