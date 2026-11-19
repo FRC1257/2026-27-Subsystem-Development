@@ -1,4 +1,4 @@
-package frc.robot.subsystems.elevator;
+package frc.robot.mechanisms.elevator;
 import org.wpilib.units.measure.Distance;
 import static org.wpilib.units.Units.Meters;
 
