@@ -15,19 +15,12 @@ import org.wpilib.units.measure.Voltage;
 public interface PIDRollerIO {
     
     public static class PIDRollerIOInputs {
-        public boolean leaderConnected = false;
-        public Angle leaderAngleRads = Radians.zero();
-        public AngularVelocity leaderVelocityRadsPerSec = RadiansPerSecond.zero();
-        public Voltage leaderAppliedVolts = Volts.zero();
-        public Current leaderCurrentAmps = Amps.zero();
-        public Temperature leaderTemperatureCelsius = Celsius.zero();
-
-        public boolean followerConnected = false;
-        public Angle followerAngleRads = Radians.zero();
-        public AngularVelocity followerVelocityRadsPerSec = RadiansPerSecond.zero();
-        public Voltage followerAppliedVolts = Volts.zero();
-        public Current followerCurrentAmps = Amps.zero();
-        public Temperature followerTemperatureCelsius = Celsius.zero();
+        public boolean motorConnected = false;
+        public Angle motorAngleRads = Radians.zero();
+        public AngularVelocity motorVelocityRadsPerSec = RadiansPerSecond.zero();
+        public Voltage motorAppliedVolts = Volts.zero();
+        public Current motorCurrentAmps = Amps.zero();
+        public Temperature motorTemperatureCelsius = Celsius.zero();
     }
 
     public default void updateInputs(IntakeRollersIOInputs inputs) {}
