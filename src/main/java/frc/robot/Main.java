@@ -4,11 +4,7 @@
 
 package frc.robot;
 
-<<<<<<< HEAD
-import edu.wpi.first.wpilibj.RobotBase;
-=======
 import org.wpilib.framework.RobotBase;
->>>>>>> 7c3eb71 (init)
 
 /**
  * Do NOT add any static variables to this class, or any initialization at all. Unless you know what
