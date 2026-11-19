@@ -23,7 +23,7 @@ public interface ElevatorIO{
         public LinearVelocity leftVelocity=MetersPerSecond.of(0);
         public Voltage leftVoltage=Volts.of(0);
         public Current leftCurrent=Amps.of(0);
-        public Distance leftAngle=Meters.of(0);
+        public Distance leftHeight=Meters.of(0);
         public Temperature leftTemp=Celsius.of(0);
     }
 
