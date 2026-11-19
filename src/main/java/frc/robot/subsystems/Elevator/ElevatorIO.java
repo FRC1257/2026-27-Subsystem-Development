@@ -2,7 +2,7 @@ package frc.robot.subsystems.Elevator;
 
 import static edu.wpi.first.units.Units.Amps;
 import static edu.wpi.first.units.Units.Radians;
-import static edu.wpi.first.units.Units.RadiansPerSecond;
+import static edu.wpi.first.units.Units.LinearVelocity;
 import static edu.wpi.first.units.Units.Volts;
 
 import org.littletonrobotics.junction.AutoLog;
@@ -18,14 +18,14 @@ public interface ElevatorIO {
         boolean leftmotorConnected = false;
         Voltage leftmotorVoltage = Volts.of(0);
         Angle leftmotorAngle = Radians.of(0);
-        LinearVelocity leftmotorVelocity = RadiansPerSecond.of(0);
+        LinearVelocity leftmotorLinearVelocity = MetersPerSecond.of(0);
         Current leftmotorCurrent = Amps.of(0);
         
 
         boolean rightmotorConnected = false;
         Voltage rightmotorVoltage = Volts.of(0);
         Angle rightmotorAngle = Radians.of(0);
-        LinearVelocity rightmotorVelocity = RadiansPerSecond.of(0);
+        LinearVelocity rightmotorLinearVelocity = MetersPerSecond.of(0);
         Current rightmotorCurrent = Amps.of(0);
     }
 
