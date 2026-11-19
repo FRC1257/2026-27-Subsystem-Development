@@ -31,6 +31,9 @@ import frc.robot.mechanisms.climb.ClimbIO.ClimbIOInputs;
 public class Climb extends Mechanism {
     private final ClimbIO io;
     private final ClimbIOInputs inputs = new ClimbIOInputs();
+
+    private Distance goalDistance = Meters.zero();
+    private Distance DistanceZero = ClimbConstants.POSITION_ZERO;
     
     private final TrapezoidProfile profile;
     private final TrapezoidProfile.State goal = new TrapezoidProfile.State();
@@ -46,6 +49,10 @@ public class Climb extends Mechanism {
 
     public Trigger atGoalPosition() {
         return new Trigger(() -> inputs.climbDistance.isnear(goalDistance, ClimbConstants.DISTANCE_TOLERANCE));
+    }
+
+    public Trigger atPositionZero() {
+        return new Trigger(() -> inputs.climbDistance.isnear(DistanceZero, ClimbConstants.DISTANCE_TOLERANCE) && inputs.climbVelocity.let(0.0));
     }
 
     private NeedsNameBuilderStage runVoltageCommand(Supplier<Voltage> volts) {
