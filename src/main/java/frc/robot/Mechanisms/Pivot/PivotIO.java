@@ -1,4 +1,4 @@
 //lael
-public class PivotIO {
+public interface PivotIO {
     
 }
