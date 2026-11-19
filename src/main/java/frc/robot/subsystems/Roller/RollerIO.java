@@ -19,7 +19,7 @@ public interface RollerIO {
         public Current rollerCurrent = Amps.of(0.0);
         public Temperature rollerTemperature = Celsius.of(0.0);
     
-    }
+    } 
 
     public default void updateInputs(RollerIOInputs inputs) {}
 
