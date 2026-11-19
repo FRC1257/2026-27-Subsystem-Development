@@ -1,3 +1,4 @@
+//RyanNg
 package frc.robot.subsystems.PIDRoller;
 
 import java.util.function.Supplier;
@@ -38,13 +39,11 @@ public class PIDRoller extends Mechanism {
     }
     public Trigger isJammed() {
         return new Trigger(
-            () -> inputs.leaderVelocityRadsPerSec.lte(PIDRollerConstants.PIDROLLER_JAMMED_VELOCITY) 
-            && inputs.leaderCurrentAmps.gte(PIDRollerConstants.PIDROLLER_JAMMED_CURRENT)
+            () -> inputs.PIDRollerVelocityRadsPerSec.lte(PIDRollerConstants.PIDROLLER_JAMMED_VELOCITY) 
+            && inputs.PIDRollerCurrentAmps.gte(PIDRollerConstants.PIDROLLER_JAMMED_CURRENT)
         ).debounce(PIDRollerConstants.PIDROLLER_JAMMED_TIME, DebounceType.kRising);
     }
-    public Trigger atGoalVelocity() {
-        return new Trigger(() -> inputs.leaderVelocityRadsPerSec.isNear(goalVelocity, PIDRollerConstants.VELOCITY_TOLERANCE));
-    }
+
     public Command runEject() {
         return runVelocityCommand(() -> PIDRollerConstants.EJECT_VELOCITY)
                 .named("PIDRoller/Eject");
