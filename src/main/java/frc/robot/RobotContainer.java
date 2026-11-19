@@ -5,17 +5,10 @@
 
 package frc.robot;
 
-<<<<<<< HEAD
-import static edu.wpi.first.units.Units.Degrees;
-import static edu.wpi.first.units.Units.Radians;
-import static edu.wpi.first.units.Units.RadiansPerSecond;
-import static edu.wpi.first.units.Units.Volts;
-=======
 import static org.wpilib.units.Units.Degrees;
 import static org.wpilib.units.Units.Radians;
 import static org.wpilib.units.Units.RadiansPerSecond;
 import static org.wpilib.units.Units.Volts;
->>>>>>> 7c3eb71 (init)
 
 import static frc.robot.util.drive.DriveControls.*;
 
@@ -26,21 +19,6 @@ import java.util.function.Supplier;
 
 import com.pathplanner.lib.auto.AutoBuilder;
 
-<<<<<<< HEAD
-import edu.wpi.first.units.measure.Voltage;
-import edu.wpi.first.wpilibj.GenericHID;
-import edu.wpi.first.wpilibj.Timer;
-import edu.wpi.first.wpilibj.XboxController;
-import edu.wpi.first.wpilibj.smartdashboard.Mechanism2d;
-import edu.wpi.first.wpilibj.smartdashboard.MechanismRoot2d;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import edu.wpi.first.wpilibj2.command.Command;
-import edu.wpi.first.wpilibj2.command.Commands;
-import edu.wpi.first.wpilibj2.command.InstantCommand;
-import edu.wpi.first.wpilibj2.command.WaitCommand;
-import edu.wpi.first.wpilibj2.command.WaitUntilCommand;
-import edu.wpi.first.wpilibj2.command.button.Trigger;
-=======
 import org.wpilib.units.measure.Voltage;
 import org.wpilib.driverstation.GenericHID;
 import org.wpilib.system.Timer;
@@ -54,7 +32,6 @@ import org.wpilib.command2.InstantCommand;
 import org.wpilib.command2.WaitCommand;
 import org.wpilib.command2.WaitUntilCommand;
 import org.wpilib.command2.button.Trigger;
->>>>>>> 7c3eb71 (init)
 import frc.robot.util.drive.CommandSnailController;
 import frc.robot.util.drive.CommandSnailController.DPad;
 
@@ -133,13 +110,8 @@ public class RobotContainer {
   /**
    * Use this method to define your button->command mappings. Buttons can be created by
    * instantiating a {@link GenericHID} or one of its subclasses ({@link
-<<<<<<< HEAD
-   * edu.wpi.first.wpilibj.Joystick} or {@link XboxController}), and then passing it to a {@link
-   * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
-=======
    * org.wpilib.driverstation.Joystick} or {@link XboxController}), and then passing it to a {@link
    * org.wpilib.command2.button.JoystickButton}.
->>>>>>> 7c3eb71 (init)
    */
   public void configureButtonBindings() {
     configureControls();

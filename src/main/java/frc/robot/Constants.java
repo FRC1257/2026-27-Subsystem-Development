@@ -4,11 +4,7 @@
 
 package frc.robot;
 
-<<<<<<< HEAD
-import edu.wpi.first.wpilibj.RobotBase;
-=======
 import org.wpilib.framework.RobotBase;
->>>>>>> 7c3eb71 (init)
 
 /**
  * The Constants class provides a convenient place for teams to hold robot-wide numerical or boolean

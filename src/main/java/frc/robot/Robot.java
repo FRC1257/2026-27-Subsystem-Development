@@ -3,17 +3,6 @@
 // the WPILib BSD license file in the root directory of this project.
 
 package frc.robot;
-<<<<<<< HEAD
-import edu.wpi.first.net.PortForwarder;
-import com.pathplanner.lib.commands.FollowPathCommand;
-import edu.wpi.first.hal.AllianceStationID;
-import edu.wpi.first.wpilibj.DriverStation;
-import edu.wpi.first.wpilibj.RobotController;
-import edu.wpi.first.wpilibj.Timer;
-import edu.wpi.first.wpilibj.simulation.DriverStationSim;
-import edu.wpi.first.wpilibj2.command.Command;
-import edu.wpi.first.wpilibj2.command.CommandScheduler;
-=======
 import org.wpilib.net.PortForwarder;
 import com.pathplanner.lib.commands.FollowPathCommand;
 import org.wpilib.hardware.hal.AllianceStationID;
@@ -27,7 +16,6 @@ import org.wpilib.system.Timer;
 import org.wpilib.simulation.DriverStationSim;
 import org.wpilib.command2.Command;
 import org.wpilib.command2.CommandScheduler;
->>>>>>> 7c3eb71 (init)
 import frc.robot.util.drive.AllianceFlipUtil;
 import frc.robot.util.drive.DriveControls;
 import frc.robot.util.misc.Elastic;
