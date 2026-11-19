@@ -6,8 +6,13 @@ import java.util.function.Supplier;
 
 import org.littletonrobotics.junction.networktables.LoggedNetworkNumber;
 
+<<<<<<< HEAD
 import edu.wpi.first.units.Measure;
 import edu.wpi.first.units.Unit;
+=======
+import org.wpilib.units.Measure;
+import org.wpilib.units.Unit;
+>>>>>>> 7c3eb71 (init)
 import frc.robot.Constants;
 
 public class LoggedTunableMeasure<U extends Unit> implements Supplier<Measure<U>> {

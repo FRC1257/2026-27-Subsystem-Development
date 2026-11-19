@@ -1,8 +1,14 @@
 package frc.robot;
 
+<<<<<<< HEAD
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.geometry.Translation2d;
+=======
+import org.wpilib.math.geometry.Pose2d;
+import org.wpilib.math.geometry.Rotation2d;
+import org.wpilib.math.geometry.Translation2d;
+>>>>>>> 7c3eb71 (init)
 
 public class AutoConstants {
     public static final Pose2d LEFT_TRENCH_START_POSITION = new Pose2d(new Translation2d(3.509, 7.457), new Rotation2d(0.0));

@@ -7,8 +7,17 @@
 
 package frc.robot.util.drive;
 
+<<<<<<< HEAD
 import edu.wpi.first.math.geometry.*;
 import edu.wpi.first.wpilibj.DriverStation;
+=======
+import org.wpilib.math.geometry.*;
+import org.wpilib.driverstation.MatchState;
+import org.wpilib.driverstation.RobotState;
+import org.wpilib.driverstation.Alliance;
+import org.wpilib.driverstation.MatchType;
+import org.wpilib.driverstation.DriverStationErrors;
+>>>>>>> 7c3eb71 (init)
 import frc.robot.FieldConstants;
 
 public class AllianceFlipUtil {
@@ -48,7 +57,12 @@ public class AllianceFlipUtil {
   }
 
   public static boolean shouldFlip() {
+<<<<<<< HEAD
     return DriverStation.getAlliance().isPresent()
         && DriverStation.getAlliance().get() == DriverStation.Alliance.Red;
+=======
+    return MatchState.getAlliance().isPresent()
+        && MatchState.getAlliance().get() == Alliance.RED;
+>>>>>>> 7c3eb71 (init)
   }
 }

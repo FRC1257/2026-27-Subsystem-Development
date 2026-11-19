@@ -2,10 +2,17 @@ package frc.robot.util.misc;
 
 import java.util.Comparator;
 
+<<<<<<< HEAD
 import edu.wpi.first.math.interpolation.Interpolator;
 import edu.wpi.first.math.interpolation.InverseInterpolator;
 import edu.wpi.first.units.Measure;
 import edu.wpi.first.units.Unit;
+=======
+import org.wpilib.math.interpolation.Interpolator;
+import org.wpilib.math.interpolation.InverseInterpolator;
+import org.wpilib.units.Measure;
+import org.wpilib.units.Unit;
+>>>>>>> 7c3eb71 (init)
 
 public final class UnitInterpolation {
     public static <M extends Measure<?>> InverseInterpolator<M> inverseInterpolate() {

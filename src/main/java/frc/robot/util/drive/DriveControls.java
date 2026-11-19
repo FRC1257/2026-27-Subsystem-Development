@@ -1,9 +1,16 @@
 package frc.robot.util.drive; 
 
+<<<<<<< HEAD
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
+=======
+import org.wpilib.command2.Command;
+import org.wpilib.command2.InstantCommand;
+import org.wpilib.command2.WaitCommand;
+import org.wpilib.command2.button.Trigger;
+>>>>>>> 7c3eb71 (init)
 import frc.robot.Constants.Drivers;
 import frc.robot.Constants.Operators;
 import java.util.function.DoubleSupplier;

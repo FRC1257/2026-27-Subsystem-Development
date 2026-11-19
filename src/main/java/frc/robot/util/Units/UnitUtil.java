@@ -1,10 +1,18 @@
 package frc.robot.util.Units;
 
+<<<<<<< HEAD
 import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.math.interpolation.Interpolator;
 import edu.wpi.first.math.interpolation.InverseInterpolator;
 import edu.wpi.first.units.Measure;
 import edu.wpi.first.units.Unit;
+=======
+import org.wpilib.math.util.MathUtil;
+import org.wpilib.math.interpolation.Interpolator;
+import org.wpilib.math.interpolation.InverseInterpolator;
+import org.wpilib.units.Measure;
+import org.wpilib.units.Unit;
+>>>>>>> 7c3eb71 (init)
 
 public class UnitUtil { 
 
@@ -32,8 +40,13 @@ public class UnitUtil {
      * The interpolation parameter {@code t} is clamped to [0, 1], so values outside
      * that range will not extrapolate beyond {@code a} or {@code b}.
      *
+<<<<<<< HEAD
      * @param <U> the unit type (e.g. {@link edu.wpi.first.units.AngleUnit})
      * @param <M> the concrete {@link Measure} subtype (e.g. {@link edu.wpi.first.units.measure.Angle})
+=======
+     * @param <U> the unit type (e.g. {@link org.wpilib.units.AngleUnit})
+     * @param <M> the concrete {@link Measure} subtype (e.g. {@link org.wpilib.units.measure.Angle})
+>>>>>>> 7c3eb71 (init)
      * @param a the start value, returned when {@code t = 0}
      * @param b the end value, returned when {@code t = 1}
      * @param t the interpolation parameter, clamped to [0, 1]
@@ -42,7 +55,11 @@ public class UnitUtil {
 
     @SuppressWarnings("unchecked")
     public static <U extends Unit, M extends Measure<U>> M interpolate(M a, M b, double t) {
+<<<<<<< HEAD
         return (M) a.plus(b.minus(a).times(MathUtil.clamp(t, 0.0, 1.0)));
+=======
+        return (M) a.plus(b.minus(a).times(Math.clamp(t, 0.0, 1.0)));
+>>>>>>> 7c3eb71 (init)
     }
     
     /**
@@ -50,8 +67,13 @@ public class UnitUtil {
      * The returned interpolator delegates to {@link #interpolate(Measure, Measure, double)},
      * clamping {@code t} to [0, 1] and preserving the concrete {@link Measure} subtype.
 
+<<<<<<< HEAD
      * @param <U> the unit type (e.g. {@link edu.wpi.first.units.AngleUnit})
      * @param <M> the concrete {@link Measure} subtype (e.g. {@link edu.wpi.first.units.measure.Angle})
+=======
+     * @param <U> the unit type (e.g. {@link org.wpilib.units.AngleUnit})
+     * @param <M> the concrete {@link Measure} subtype (e.g. {@link org.wpilib.units.measure.Angle})
+>>>>>>> 7c3eb71 (init)
      * @param unit the unit to create the interpolator for — not used in interpolation directly, but conveys intent at the call site (e.g. {@code interpolatorFor(Radians)})
      * @return a {@link Interpolator} that linearly interpolates between two {@code M} values
      */
@@ -65,8 +87,13 @@ public class UnitUtil {
      * returning the parameter {@code t} in [0, 1] such that
      * {@link #interpolate(Measure, Measure, double) interpolate(start, end, t)} would produce {@code query}.
      *
+<<<<<<< HEAD
      * @param <U> the unit type (e.g. {@link edu.wpi.first.units.AngleUnit})
      * @param <M> the concrete {@link Measure} subtype (e.g. {@link edu.wpi.first.units.measure.Angle})
+=======
+     * @param <U> the unit type (e.g. {@link org.wpilib.units.AngleUnit})
+     * @param <M> the concrete {@link Measure} subtype (e.g. {@link org.wpilib.units.measure.Angle})
+>>>>>>> 7c3eb71 (init)
      * @param start the start of the range, corresponding to {@code t = 0}
      * @param end the end of the range, corresponding to {@code t = 1}
      * @param query the value to find the interpolation parameter for
@@ -76,7 +103,11 @@ public class UnitUtil {
     public static <U extends Unit, M extends Measure<U>> double inverseInterpolate(M start, M end, M query) {
         double range = end.minus(start).baseUnitMagnitude();
         if(Math.abs(range) < 1e-12) return 0.0;
+<<<<<<< HEAD
         return MathUtil.clamp(query.minus(start).div(end.minus(start)).baseUnitMagnitude(), 0.0, 1.0);
+=======
+        return Math.clamp(query.minus(start).div(end.minus(start)).baseUnitMagnitude(), 0.0, 1.0);
+>>>>>>> 7c3eb71 (init)
     }
 
     /**
@@ -84,8 +115,13 @@ public class UnitUtil {
      * The returned inverse interpolator delegates to {@link #inverseInterpolate(Measure, Measure, Measure)},
      * clamping results to [0, 1] and handling zero-range inputs safely.
      *
+<<<<<<< HEAD
      * @param <U>  the unit type (e.g. {@link edu.wpi.first.units.AngleUnit})
      * @param <M>  the concrete {@link Measure} subtype (e.g. {@link edu.wpi.first.units.measure.Angle})
+=======
+     * @param <U>  the unit type (e.g. {@link org.wpilib.units.AngleUnit})
+     * @param <M>  the concrete {@link Measure} subtype (e.g. {@link org.wpilib.units.measure.Angle})
+>>>>>>> 7c3eb71 (init)
      * @param unit the unit to create the inverse interpolator for — not used in computation directly, but conveys intent at the call site (e.g. {@code inverseLerpOf(Radians)})
      * @return an {@link InverseInterpolator} that computes the inverse linear interpolation parameter for two {@code Measure<U>} bounds and a query value
      */

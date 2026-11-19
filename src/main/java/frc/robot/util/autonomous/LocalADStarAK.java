@@ -6,8 +6,13 @@ import com.pathplanner.lib.path.PathPlannerPath;
 import com.pathplanner.lib.path.PathPoint;
 import com.pathplanner.lib.pathfinding.LocalADStar;
 import com.pathplanner.lib.pathfinding.Pathfinder;
+<<<<<<< HEAD
 import edu.wpi.first.math.Pair;
 import edu.wpi.first.math.geometry.Translation2d;
+=======
+import org.wpilib.math.util.Pair;
+import org.wpilib.math.geometry.Translation2d;
+>>>>>>> 7c3eb71 (init)
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;

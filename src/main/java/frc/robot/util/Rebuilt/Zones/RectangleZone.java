@@ -2,8 +2,13 @@ package frc.robot.util.Rebuilt.Zones;
 
 import java.util.function.Supplier;
 
+<<<<<<< HEAD
 import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
+=======
+import org.wpilib.math.geometry.Translation2d;
+import org.wpilib.command2.button.Trigger;
+>>>>>>> 7c3eb71 (init)
 
 public class RectangleZone implements Zone {
     private final Translation2d topLeft;

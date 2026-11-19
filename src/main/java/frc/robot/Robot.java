@@ -3,6 +3,7 @@
 // the WPILib BSD license file in the root directory of this project.
 
 package frc.robot;
+<<<<<<< HEAD
 import edu.wpi.first.net.PortForwarder;
 import com.pathplanner.lib.commands.FollowPathCommand;
 import edu.wpi.first.hal.AllianceStationID;
@@ -12,6 +13,21 @@ import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.simulation.DriverStationSim;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
+=======
+import org.wpilib.net.PortForwarder;
+import com.pathplanner.lib.commands.FollowPathCommand;
+import org.wpilib.hardware.hal.AllianceStationID;
+import org.wpilib.driverstation.MatchState;
+import org.wpilib.driverstation.RobotState;
+import org.wpilib.driverstation.Alliance;
+import org.wpilib.driverstation.MatchType;
+import org.wpilib.driverstation.DriverStationErrors;
+import org.wpilib.system.RobotController;
+import org.wpilib.system.Timer;
+import org.wpilib.simulation.DriverStationSim;
+import org.wpilib.command2.Command;
+import org.wpilib.command2.CommandScheduler;
+>>>>>>> 7c3eb71 (init)
 import frc.robot.util.drive.AllianceFlipUtil;
 import frc.robot.util.drive.DriveControls;
 import frc.robot.util.misc.Elastic;
@@ -161,7 +177,11 @@ public class Robot extends LoggedRobot {
       autonomousCommand.cancel();
     }
 
+<<<<<<< HEAD
     System.out.println(DriverStation.getAlliance().toString());
+=======
+    System.out.println(MatchState.getAlliance().toString());
+>>>>>>> 7c3eb71 (init)
     if (AllianceFlipUtil.shouldFlip()) {
       Elastic.selectTab("Teleoperated Red");
     } else {
@@ -181,14 +201,22 @@ public class Robot extends LoggedRobot {
 
   /** This function is called once when test mode is enabled. */
   @Override
+<<<<<<< HEAD
   public void testInit() {
+=======
+  public void utilityInit() {
+>>>>>>> 7c3eb71 (init)
     // Cancels all running commands at the start of test mode.
     CommandScheduler.getInstance().cancelAll();
   }
 
   /** This function is called periodically during test mode. */
   @Override
+<<<<<<< HEAD
   public void testPeriodic() {}
+=======
+  public void utilityPeriodic() {}
+>>>>>>> 7c3eb71 (init)
 
   /** This function is called once when the robot is first started up. */
   @Override

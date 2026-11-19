@@ -1,8 +1,14 @@
 package frc.robot.util.drive;
 
+<<<<<<< HEAD
 import edu.wpi.first.wpilibj.GenericHID.RumbleType;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
+=======
+import org.wpilib.driverstation.GenericHID.RumbleType;
+import org.wpilib.command2.button.CommandXboxController;
+import org.wpilib.command2.button.Trigger;
+>>>>>>> 7c3eb71 (init)
 
 public class CommandSnailController extends CommandXboxController {
   public CommandSnailController(int port) {

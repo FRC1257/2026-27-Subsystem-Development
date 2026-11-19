@@ -1,5 +1,6 @@
 package frc.robot.util.misc;
 
+<<<<<<< HEAD
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Pose3d;
 import edu.wpi.first.math.geometry.Rotation2d;
@@ -8,6 +9,16 @@ import edu.wpi.first.math.geometry.Transform3d;
 import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.math.geometry.Twist2d;
 import edu.wpi.first.math.kinematics.ChassisSpeeds;
+=======
+import org.wpilib.math.geometry.Pose2d;
+import org.wpilib.math.geometry.Pose3d;
+import org.wpilib.math.geometry.Rotation2d;
+import org.wpilib.math.geometry.Transform2d;
+import org.wpilib.math.geometry.Transform3d;
+import org.wpilib.math.geometry.Translation2d;
+import org.wpilib.math.geometry.Twist2d;
+import org.wpilib.math.kinematics.ChassisVelocities;
+>>>>>>> 7c3eb71 (init)
 
 public class GeometryUtilities {
   /**
@@ -132,14 +143,24 @@ public class GeometryUtilities {
   }
 
   /**
+<<<<<<< HEAD
    * Converts a ChassisSpeeds to a Twist2d by extracting two dimensions (Y and Z). chain
+=======
+   * Converts a ChassisVelocities to a Twist2d by extracting two dimensions (Y and Z). chain
+>>>>>>> 7c3eb71 (init)
    *
    * @param speeds The original translation
    * @return The resulting translation
    */
+<<<<<<< HEAD
   public static Twist2d toTwist2d(ChassisSpeeds speeds) {
     return new Twist2d(
         speeds.vxMetersPerSecond, speeds.vyMetersPerSecond, speeds.omegaRadiansPerSecond);
+=======
+  public static Twist2d toTwist2d(ChassisVelocities speeds) {
+    return new Twist2d(
+        speeds.vx, speeds.vy, speeds.omega);
+>>>>>>> 7c3eb71 (init)
   }
 
   /**
@@ -172,6 +193,7 @@ public class GeometryUtilities {
    * @param currentRotation The current rotation of the robot
    * @return The new velocity
    */
+<<<<<<< HEAD
   public static ChassisSpeeds transformVelocity(
       ChassisSpeeds velocity, Translation2d transform, Rotation2d currentRotation) {
     return new ChassisSpeeds(
@@ -184,5 +206,19 @@ public class GeometryUtilities {
                 * (transform.getX() * currentRotation.getCos()
                     - transform.getY() * currentRotation.getSin()),
         velocity.omegaRadiansPerSecond);
+=======
+  public static ChassisVelocities transformVelocity(
+      ChassisVelocities velocity, Translation2d transform, Rotation2d currentRotation) {
+    return new ChassisVelocities(
+        velocity.vx
+            + velocity.omega
+                * (transform.getY() * currentRotation.getCos()
+                    - transform.getX() * currentRotation.getSin()),
+        velocity.vy
+            + velocity.omega
+                * (transform.getX() * currentRotation.getCos()
+                    - transform.getY() * currentRotation.getSin()),
+        velocity.omega);
+>>>>>>> 7c3eb71 (init)
   }
 }
