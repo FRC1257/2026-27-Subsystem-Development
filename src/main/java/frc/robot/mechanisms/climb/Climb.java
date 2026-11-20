@@ -9,7 +9,7 @@ THAT WAS EMPTY SPACE
 
 package frc.robot.mechanisms.climb;
 
-import static org.wpilib.units.Units.RadiansPerSecond;
+import static org.wpilib.units.Units.MetersPerSecond;
 
 import java.util.function.Supplier;
 
@@ -22,7 +22,7 @@ import org.wpilib.command3.Scheduler;
 import org.wpilib.command3.Trigger;
 import org.wpilib.math.filter.Debouncer;
 import org.wpilib.math.filter.Debouncer.DebounceType;
-import org.wpilib.units.measure.AngularVelocity;
+import org.wpilib.units.measure.LinearVelocity;
 import org.wpilib.units.measure.Voltage;
 
 import frc.robot.util.Units.UnitUtil;
@@ -66,7 +66,7 @@ public class Climb extends Mechanism {
                 goalDistance = UnitsUtil.clamp(meters.get, ClimbConstants.MIN_DISTANCE, ClimbConstants.MAX_DISTANCE);
                 goal = new TrapezoidProfile.State(goalDistance.magnitude(), 0.0);
                 setpoint = profile.calculate(0.02, setpoint, goal);
-                io.setPosition(Meters.of(setpoint.Position), RadiansPerSecond.of(setpoint.velocity));
+                io.setPosition(Meters.of(setpoint.Position), MetersPerSecond.of(setpoint.velocity));
                 co.yield();
             }
         })
