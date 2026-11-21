@@ -9,14 +9,14 @@ import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.AutoConstants;
 import frc.robot.FieldConstants;
+import frc.robot.Mechanisms.ActiveFloor.ActiveFloor;
+import frc.robot.Mechanisms.Hopper.HopperIntake.HopperIntake;
+import frc.robot.Mechanisms.Hopper.HopperPivot.HopperPivot;
+import frc.robot.Mechanisms.Kicker.Kicker;
+import frc.robot.Mechanisms.Shooter.Flywheel.Flywheel;
+import frc.robot.Mechanisms.Shooter.Hood.Hood;
+import frc.robot.Mechanisms.drive.Drive;
 import frc.robot.commands.DriveCommands;
-import frc.robot.subsystems.ActiveFloor.ActiveFloor;
-import frc.robot.subsystems.Hopper.HopperIntake.HopperIntake;
-import frc.robot.subsystems.Hopper.HopperPivot.HopperPivot;
-import frc.robot.subsystems.Kicker.Kicker;
-import frc.robot.subsystems.Shooter.Flywheel.Flywheel;
-import frc.robot.subsystems.Shooter.Hood.Hood;
-import frc.robot.subsystems.drive.Drive;
 import frc.robot.util.drive.AllianceFlipUtil;
 
 public class AutoChooser {
