@@ -26,15 +26,17 @@ import static org.wpilib.units.Units.RadiansPerSecond;
 import org.wpilib.math.trajectory.TrapezoidProfile;
 
 public class Climb extends Mechanism {
-    private final Climb io;
+    private final ClimbIO io;
     private ClimbIOInputs inputs = new ClimbIOInputs();
     private TrapezoidProfile profile;
+
     private TrapezoidProfile.State goal = new TrapezoidProfile.State();
     private TrapezoidProfile.State setpoint = null;
+
     public Climb(ClimbIO io) {
         this.io = io;
         this.profile = new TrapezoidProfile(
-            new TrapezoidProfile.Constraints(0, 0)
+            new TrapezoidProfile.Constraints(ClimbConstants.MAX_VELOCITY, ClimbConstants.MAX_ACCELERATION)
         );
         Scheduler.getDefault().addPeriodic(() -> {
             io.updateInputs(inputs);
@@ -48,5 +50,23 @@ public class Climb extends Mechanism {
             () -> inputs.positionMeters.lte(ClimbConstants.) 
             == inputs.setpointMeters.gte(ClimbConstants.)
         ).debounce(PIDRollerConstants.PIDROLLER_JAMMED_TIME, DebounceType.kRising);
+    }
+
+    public NeedsNameBuilderStage moveTo(double goalPosition, double Name) {
+        return run(coroutine -> {
+            if atGoal(goalPosition) { // atGoal will be method to check position using inputs position vs goal maybe add a tolerance -Albert
+                return;
+            }
+        })
+    }
+
+    // should create trapezoidal profile here to move it if not already at goal position -Albert 
+
+    public Command goPosition0() {
+        return moveTo(ClimbConstants.POSITION_0_METERS, "Position 0");
+    }
+
+    public Command goPosition1() {
+        return moveTo(ClimbConstants.POSITION_1_METERS, "Position 1");
     }
 }
