@@ -31,7 +31,7 @@ public class RollerIOSparkMax implements RollerIO {
     
     private SparkMaxConfig rollerconfig;
     
-    private ArmFeedfowards feedFoward;
+    private ArmFeedfowards feedFoward; //needs to be simple feedforward
     public RollerIOSparkMax(){
         roller = new SparkMax(0, MotorType.kBrushless);
         
@@ -44,7 +44,7 @@ public class RollerIOSparkMax implements RollerIO {
             .encoder
                 .positionConversionFactor(3);
         rollerconfig
-            .ClosedLoop
+            .ClosedLoop //closed loop controller
             .pid(1,2,3);
         
     roller.configure(rollerconfig, com.revrobotics.ResetMode.kResetSafeParameters, com.revrobotics.PersistMode.kPersistParamaters);
@@ -52,3 +52,6 @@ public class RollerIOSparkMax implements RollerIO {
     feedFoward = new ArmFeedfoward(3,4,4);
     }
 }
+
+//21/30 
+// implementations not finished

@@ -1,4 +1,4 @@
-package frc.robot.subsystems.Roller;
+package frc.robot.subsystems.Roller; //why two subsystesm files
 
 import static edu.wpi.first.units.Units.Amps;
 import static edu.wpi.first.units.Units.Celsius;
@@ -16,7 +16,7 @@ public interface RollerIO {
     public static class RollerIOInputs {
         public boolean rollerConnected = false;
         public Voltage rollerVoltage = Volts.of(0);
-        public Angle rollerAngle = Radians.of(0);
+        public Angle rollerAngle = Radians.of(0); // need to import radians for it to work
         public AngularVelocity rollerVelocity = RadiansPerSecond.of(0);
         public Current rollerCurrent = Amps.of(0);
     }
