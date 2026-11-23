@@ -2,6 +2,7 @@
 package frc.robot.Mechanisms.Elevator;
 
 import static org.wpilib.units.Units.Radians;
+import static org.wpilib.units.Units.Volts;
 import static org.wpilib.units.Units.RadiansPerSecond;
 
 import java.util.function.Supplier;
@@ -38,8 +39,8 @@ public class Elevator extends Mechanism {
         });
     }
 
-    public Trigger atGoalAngle() {
-        return new Trigger(() -> inputs.leaderAngleRads.isNear(goalAngle, 6.0)); //(goalAngle, angle tolerance)
+    public Trigger atGoal() {
+        return new Trigger(() -> inputs.leaderRads.isNear(goal, 6.0)); //(goalAngle, angle tolerance)
     }
 
     private NeedsNameBuilderStage runVoltageCommand(Supplier<Voltage> volts) {
@@ -47,33 +48,11 @@ public class Elevator extends Mechanism {
     }
 
     private NeedsNameBuilderstage runHeight1Command() {
-        return runVoltageCommand(() -> 25); //height 1 voltage
+        return runVoltageCommand(() -> Volts.of(25)); //height 1 voltage
     }
     private NeedsNameBuilderStage runHeight2Command() {
-        return runVoltageCommand(() -> 50); //height 2 voltage
+        return runVoltageCommand(() -> Volts.of(50)); //height 2 voltage
     }
-    // private NeedsNameBuilderStage runAngleCommand(Supplier<Angle> angle) {
-    //     return run(co -> {
-    //         setpoint = new TrapezoidProfile.State(inputs.leaderAngleRads.magnitude(), inputs.leaderVelocityRadsPerSec.magnitude());
-    //         while (true) {
-    //             goalAngle = UnitUtil.clamp(angle.get(), 2.0, 4.0); //(angle.get(), min angle, max angle)
-    //             goal = new TrapezoidProfile.State(goalAngle.magnitude(), 0.0);
-    //             setpoint = profile.calculate(0.02, setpoint, goal);
-    //             io.setAngle(Radians.of(setpoint.position), RadiansPerSecond.of(setpoint.velocity));
-    //             co.yield();
-    //         }
-    //     });
-    // }
-
-    // public Command runAngle() {
-    //     return runAngleCommand(() -> ElevatorConstants._ANGLE)
-    //             .named("Elevator/Angle");
-    // }
-
-    // public Command runStowAngle() {
-    //     return runAngleCommand(() -> ElevatorConstants.STOW_ANGLE)
-    //             .named("Elevator/StowAngle");
-    // }
     
 }
 /*
