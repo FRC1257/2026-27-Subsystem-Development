@@ -41,12 +41,12 @@ public class Elevator extends Mechanism {
             )
         );
 
-    Scheduler.getDefault().addPeriodic(() -> {
+        Scheduler.getDefault().addPeriodic(() -> {
             io.updateInputs(inputs);
         });
     }
     public Trigger atGoalDistance() {
-        return new Trigger(() -> inputs.leaderMeters.isNear(goalMeters, IntakePivotConstants.DISTANCE_TOLERANCE));
+        return new Trigger(() -> inputs.leaderMeters.isNear(goalMeters, ElevatorConstants.DISTANCE_TOLERANCE));
     }
     private NeedsNameBuilderStage runDistanceCommand(Supplier<Distance> distance) {
         return run(co -> {
