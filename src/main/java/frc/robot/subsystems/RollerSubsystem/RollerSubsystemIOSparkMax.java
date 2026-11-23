@@ -27,7 +27,7 @@ import edu.wpi.first.units.measure.Voltage;
 import edu.wpi.first.units.measure.AngularVelocity;
 import frc.robot.Constants;
 
-public class RollerSubsystemIOSparkMax implements RollerSubsystemio {
+public class RollerSubsystemIOSparkMax implements RollerSubsystemio { //missing closer
     private SparkMax Motor;
 
     private SparkMaxConfig Config;
@@ -60,7 +60,7 @@ public class RollerSubsystemIOSparkMax implements RollerSubsystemio {
 
         feedforward = new ArmFeedforward(3,4,4);
 
-            
+        //need simple feedforward
     }
 
     @Override
@@ -72,12 +72,14 @@ public class RollerSubsystemIOSparkMax implements RollerSubsystemio {
         inputs.rollerConnected = rollerMotor.getLastError() == REVLibError.kOk; 
 }
     @Override 
-    public void runAngularVelocity(AngularVelocity velocity) {
+    public void runAngularVelocity(AngularVelocity velocity) { //not a thing in your IO file
         Motor.set(ControlType.kVelocity, velocity.get(RadiansPerSecond));
     }
     @Override
-    pubklic void runrollerVoltage(Voltage volts) {
+    pubklic void runrollerVoltage(Voltage volts) { //not a thing in your IO file
         Motor.set(ControlType.kDutyCycle, volts.get(Volts) / 12.0);
     }
     @Override
-    public void setPID(double kP, double kI, double kD) {
+    public void setPID(double kP, double kI, double kD) { //why
+
+        //. 17/30
