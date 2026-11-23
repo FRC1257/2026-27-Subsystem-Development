@@ -1,4 +1,4 @@
-package frc.robot.subsystems.Pivot;
+package frc.robot.subsystems.Pivot; //Hugh's magnificent pivot subsystem that works hopefully
 
 
 import static org.wpilib.units.Units.Radians;
@@ -76,23 +76,19 @@ public class Pivot extends Mechanism {
       });
   }
 
-
-
-
-  public Command runIntakeAngle() {
-      return runAngleCommand(() -> PivotConstants.INTAKE_ANGLE)
-              .named("Pivot/IntakeAngle");
+  public Command runAngleOne() {
+      return runAngleCommand(() -> PivotConstants.ANGLE_ONE)
+              .named("Pivot/AngleOne");
   }
 
 
 
 
-  public Command runStowAngle() {
-      return runAngleCommand(() -> PivotConstants.STOW_ANGLE)
-              .named("Pivot/StowAngle");
+  public Command runAngleTwo() {
+      return runAngleCommand(() -> PivotConstants.ANGLE_TWO)
+              .named("Pivot/AngleTwo");
   }
-
-
+ 
 
 
 }

@@ -49,17 +49,12 @@ public class BasicRollers extends SubsystemBase {
     }
 
 
-    public Command runEject() {
+    public Command runOuttake() {
         return runVoltageCommand(() -> BasicRollersConstants.EJECT_VOLTAGE)
-                .named("BasicRollers/Eject");
-    }
-
-
-    public Command runIdle() {
-        return runVoltageCommand(() -> BasicRollersConstants.IDLE_VOLTAGE)
-                .named("BasicRollers/Idle");
+                .named("BasicRollers/Outtake");
     }
 
 
 }
-// AVyan  
+// Avyan made it 
+
