@@ -10,7 +10,7 @@ import org.wpilib.command3.Mechanism;
 import org.wpilib.command3.NeedsNameBuilderStage;
 import org.wpilib.command3.Scheduler;
 import org.wpilib.command3.button.Trigger;
-
+import org.littletonrobotics.junction.Logger;
 
 import org.wpilib.math.trajectory.TrapezoidProfile;
 import org.wpilib.units.measure.Angle;
@@ -25,8 +25,8 @@ public class Pivot extends Mechanism {
 
 
     private final PivotIO io;
-    private PivotIOInputs inputs = new PivotIOInputs();
-
+    private final PivotIO io;
+    private final PivotIOInputsAutoLogged inputs = new PivotIOInputsAutoLogged();  
 
     private TrapezoidProfile profile;
     private TrapezoidProfile.State goal = new TrapezoidProfile.State();
@@ -50,6 +50,7 @@ public class Pivot extends Mechanism {
 
         Scheduler.getDefault().addPeriodic(() -> {
             io.updateInputs(inputs);
+             Logger.processInputs("Pivot", inputs); 
         });
     }
 
@@ -66,7 +67,7 @@ public class Pivot extends Mechanism {
 
     private NeedsNameBuilderStage runAngleCommand(Supplier<Angle> angle) {
         return run(co -> {
-            setpoint = new TrapezoidProfile.State(inputs.rightpivotAngle.in(Radians), inputs.rightVelocityRadsPerSec.in(RadiansPerSecond));
+            setpoint = new TrapezoidProfile.State(inputs.rightPivotAngle.in(Radians), inputs.rightPivotVelocity.in(RadiansPerSecond));
             while (true) {
                 goalAngle = UnitUtil.clamp(angle.get(), PivotConstants.MIN_ANGLE, PivotConstants.MAX_ANGLE);
                 goal = new TrapezoidProfile.State(goalAngle.in(Radians), 0.0);

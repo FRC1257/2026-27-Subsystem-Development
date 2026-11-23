@@ -17,47 +17,33 @@ import org.wpilib.units.measure.Voltage;
 
 public interface PivotIO {
 
-
   @AutoLog
   public static class PivotIOInputs {
-    public boolean leftpivotConnected = false;
-    public Voltage leftpivotVoltage = Volts.of(0.0);
-    public Angle leftpivotAngle = Radians.of(0.0);
-    public AngularVelocity leftpivotVelocity = RadiansPerSecond.of(0.0);
-    public Current leftpivotCurrent = Amps.of(0.0);
-    public Temperature leftTemperature = Celsius.of(0.0);
+    public boolean leftPivotConnected = false;
+    public Voltage leftPivotVoltage = Volts.zero();
+    public Angle leftPivotAngle = Radians.zero();
+    public AngularVelocity leftPivotVelocity = RadiansPerSecond.zero();
+    public Current leftPivotCurrent = Amps.zero();
+    public Temperature leftPivotTemperature = Celsius.zero();
 
-
-    public boolean rightpivotConnected = false;
-    public Voltage rightpivotVoltage = Volts.of(0.0);
-    public Angle rightpivotAngle = Radians.of(0.0);
-    public AngularVelocity rightpivotVelocity = RadiansPerSecond.of(0.0);
-    public Current rightpivotCurrent = Amps.of(0.0);
-    public Temperature rightTemperature = Celsius.of(0.0);
+    public boolean rightPivotConnected = false;
+    public Voltage rightPivotVoltage = Volts.zero();
+    public Angle rightPivotAngle = Radians.zero();
+    public AngularVelocity rightPivotVelocity = RadiansPerSecond.zero();
+    public Current rightPivotCurrent = Amps.zero();
+    public Temperature rightPivotTemperature = Celsius.zero();
   }
 
-
   default void updateInputs(PivotIOInputs inputs) {}
+  
+  default void setVoltage(Voltage volts) {}
 
-
-  default void runVoltage(Voltage volts) {}
-
-
-  default void runAngle(double angle, double velocity) {}
-
+  default void setAngle(Angle angle, AngularVelocity velocity) {}
 
   default void setPID(double kp, double ki, double kd) {}
 
-
   default void setFF(double ks, double kv, double kg) {}
 
-
   default void stop() {}
-
-
-  default void setVoltage(Voltage volts) {}
- 
-  default void setAngle(Angle angle, AngularVelocity velocity) {}
-
-
 }
+
