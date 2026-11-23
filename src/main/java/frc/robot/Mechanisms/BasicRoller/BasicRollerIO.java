@@ -1,5 +1,5 @@
-package frc.robot.mechanisms.PIDRoller;
-//done by caitlin
+package frc.robot.mechanisms.BasicRoller;
+
 import static org.wpilib.units.Units.Amps;
 import static org.wpilib.units.Units.Celsius;
 import static org.wpilib.units.Units.Radians;
@@ -12,9 +12,9 @@ import org.wpilib.units.measure.Current;
 import org.wpilib.units.measure.Temperature;
 import org.wpilib.units.measure.Voltage;
 
-public interface PIDRollerIO {
-    
-    public static class PIDRollerIOInputs {
+public interface BasicRollerIO {
+
+    public static class BasicRollerIOInputs {
         public boolean leaderConnected = false;
         public Angle leaderAngleRads = Radians.zero();
         public AngularVelocity leaderVelocityRadsPerSec = RadiansPerSecond.zero();
@@ -30,9 +30,11 @@ public interface PIDRollerIO {
         public Temperature followerTemperatureCelsius = Celsius.zero();
     }
 
-    public default void updateInputs(IntakeRollersIOInputs inputs) {}
+    public default void updateInputs(BasicRollerIOInputs inputs) {}
 
     public default void setVoltage(Voltage volts) {}
 
     public default void stop() {}
 }
+
+//Sophie Wang
