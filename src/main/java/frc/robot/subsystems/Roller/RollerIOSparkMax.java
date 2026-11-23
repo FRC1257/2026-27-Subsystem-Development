@@ -32,7 +32,7 @@ public class RollerIOSparkMax implements RollerIO {
 
     private SparkMaxConfig rollerConfig;
 
-    private ArmFeedforward feedforward;
+    private ArmFeedforward feedforward; //simple feedforward not armfeedforward
 
     public RollerIOSparkMax() {
         rollerMotor = new SparkMax(0, MotorType.kBrushless);
@@ -58,3 +58,7 @@ public class RollerIOSparkMax implements RollerIO {
     }
 
 }
+
+//no implementaiton of methods
+// but everything you have atm looks good
+// 22/30
