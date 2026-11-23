@@ -1,4 +1,4 @@
-package frc.robot.mechanisms.PIDRoller;
+package frc.robot.Mechanisms.BasicRoller;
 //done by caitlin
 import static org.wpilib.units.Units.Amps;
 import static org.wpilib.units.Units.Celsius;
@@ -23,7 +23,7 @@ public interface PIDRollerIO {
         public Temperature motorTemperatureCelsius = Celsius.zero();
     }
 
-    public default void updateInputs(IntakeRollersIOInputs inputs) {}
+    public default void updateInputs(PIDRollerIOInputs inputs) {}
 
     public default void setVoltage(Voltage volts) {}
 

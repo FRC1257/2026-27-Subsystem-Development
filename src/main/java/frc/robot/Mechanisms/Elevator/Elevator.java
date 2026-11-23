@@ -26,8 +26,6 @@ public class Elevator extends Mechanism {
     private TrapezoidProfile.State goal = new TrapezoidProfile.State();
     private TrapezoidProfile.State setpoint = null;
 
-    private Angle goalAngle = Radians.zero();
-
     public Elevator(ElevatorIO io) {
         this.io = io;
 
