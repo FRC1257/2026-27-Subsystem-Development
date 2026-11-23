@@ -1,5 +1,5 @@
 package frc.robot.mechanisms.PIDRoller;
-//done by caitlin
+//made by caitlin, please give 100
 import static org.wpilib.units.Units.Amps;
 import static org.wpilib.units.Units.Celsius;
 import static org.wpilib.units.Units.Radians;
@@ -25,12 +25,15 @@ public interface PIDRollerIO {
         public Temperature motorTemperatureCelsius = Celsius.zero();
     }
 
+    public default void updateInputs(PIDRollerIOInputs inputs) {}
 
-    public default void updateInputs(IntakeRollersIOInputs inputs) {}
+    public default void setVoltage(Voltage voltage) {}
 
+    public default void setVelocity(AngularVelocity velocityRadsPerSec) {}
 
-    public default void setVoltage(Voltage volts) {}
+    public default void setPID(double kp, double ki, double kd) {}
 
+    public default void setFF(double ks, double kv) {}
 
     public default void stop() {}
 }
