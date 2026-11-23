@@ -29,7 +29,7 @@ public class RollerIOSparkMax implements RollerIO {
     private final SparkMax rollerMotor;
     
     private final SparkAbsoluteEncoder rollerEncoder;
-
+    // can't rlly make object for encoder
     private final SparkMaxConfig rollerConfig;
 
     private SimpleMotorFeedforward rollerFeedforward;
@@ -56,12 +56,12 @@ public class RollerIOSparkMax implements RollerIO {
 
         rollerMotor.configure(rollerConfig, ResetMode.kNoResetSafeParameters, PersistMode.kPersistParameters);
         
-        feedforward = new SimpleMotorFeedforward(10,50,90);
+        feedforward = new SimpleMotorFeedforward(10,50,90); //you named it rollerFF
     }    
 
 
     @Override
-    public void runVoltage(Voltage volts) {
+    public void runVoltage(Voltage volts) { //called setVoltage 
       rollerMotor.setVoltage(volts);
       
     }
@@ -70,6 +70,7 @@ public class RollerIOSparkMax implements RollerIO {
     public void setVelocity(AngularVelocity angularVelocity) {
         double feedforwardVolts = feedforward.calculate(angularVelocity.in(RadiansPerSecond));
         rollerMotor.getClosedLoopController().setSetpoint(angularVelocity.in(RadiansPerSecond), ControlType.kVelocity, ClosedLoopSlot.kSlot0, feedforwardVolts);
+        //only works in RPM not RadiansPerSec
     }
 
     @Override
@@ -90,7 +91,7 @@ public class RollerIOSparkMax implements RollerIO {
     }
 
     @Override 
-    public void setFF(double kS, double, kV, double kA) {
+    public void setFF(double kS, double kV, double kA) {
      feedforward.setKs(ks);
      feedforward.setKv(kv);
      feedforward.setKa(kA);
@@ -104,3 +105,5 @@ public class RollerIOSparkMax implements RollerIO {
 }
 
 }
+
+//23/30

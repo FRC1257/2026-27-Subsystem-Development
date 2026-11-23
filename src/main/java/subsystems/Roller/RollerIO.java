@@ -1,7 +1,8 @@
 import static edu.wpi.first.units.Units.Radians;
 import static edu.wpi.first.units.Units.RadiansPerSecond;
 import static edu.wpi.first.units.Units.Volts;
-import static edu.wpi.first.units.TemperatureUnit;
+import static edu.wpi.first.units.TemperatureUnit; // not a thing
+// wrong location for your files
 
 import edu.wpi.first.math.controller.ArmFeedforward;
 import edu.wpi.first.math.controller.ProfiledPIDController;
@@ -16,7 +17,7 @@ import frc.robot.Constants;
 public interface RollerIO {
 
 
-    @AutoLog 
+    @AutoLog //you didn't import this
     public static class RollerIOInputs {
         public boolean rollerConnected = false;
         public Voltage rollerVoltage = Volts.of(0.0);
