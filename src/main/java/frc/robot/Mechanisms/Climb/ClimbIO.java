@@ -1,4 +1,3 @@
-//lael
 public class ClimbIO {
     
 }
