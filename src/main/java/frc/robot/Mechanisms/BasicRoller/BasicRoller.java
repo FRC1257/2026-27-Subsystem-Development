@@ -28,17 +28,17 @@ public class BasicRoller extends Mechanism {
     }
 
     public Command runIntake() {
-        return runVoltageCommand(() -> BasicRollerConstants.INTAKE_VOLTAGE)
+        return runVoltageCommand(() -> 2)
                 .named("BasicRoller/Intake");
     }
 
     public Command runEject() {
-        return runVoltageCommand(() -> BasicRollerConstants.EJECT_VOLTAGE)
+        return runVoltageCommand(() -> 24)
                 .named("BasicRoller/Eject");
     }
 
     public Command runIdle() {
-        return runVoltageCommand(() -> BasicRollerConstants.IDLE_VOLTAGE)
+        return runVoltageCommand(() -> 2)
                 .named("BasicRoller/Idle");
     }
 
