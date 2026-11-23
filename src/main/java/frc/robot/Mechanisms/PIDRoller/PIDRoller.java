@@ -1,3 +1,5 @@
+\\ made by caitlin, please give 100
+
 package frc.robot.subsystems.PIDRoller;
 
 
@@ -15,23 +17,11 @@ import frc.robot.mechanisms.Intake.PIDRoller.PIDRollerIO.PIDRollerIOInputs;
 
 
 public class PIDRoller extends Mechanism {
-    /*
-    Commands for reaching goal velocity
-    Voltage
-    Velocity
-    Triggers for if the roller is jammed
-    Used in command to help unjam
-    */
-
 
     private final PIDRollerIO io;
     private PIDRollerIOInputs inputs = new PIDRollerIOInputs();
 
-
-    private Angle goalAngle = Radians.zero();
-
-
-
+    private AngularVelocity goalVelocity = RadiansPerSecond.zero();
 
     public PIDRoller(PIDRollerIO io) {
         this.io = io;
@@ -42,6 +32,13 @@ public class PIDRoller extends Mechanism {
         });
     }
 
+
+    public Trigger isJammed() {
+        return new Trigger(
+            () -> inputs.motorVelocityRadsPerSec.lte(PIDRollerConstants.PIDROLLER_JAMMED_VELOCITY)
+            && inputs.motorCurrentAmps.gte(PIDRollerConstants.PIDROLLER_JAMMED_CURRENT)
+        ).debounce(PIDRollerConstants.PIDROLLER_JAMMED_TIME, DebounceType.kRising);
+    }
 
     private NeedsNameBuilderStage runVoltageCommand(Supplier<Voltage> volts) {
         return runRepeatedly(() -> io.setVoltage(volts.get()));
@@ -56,7 +53,7 @@ public class PIDRoller extends Mechanism {
     }
 
 
-    public Command runRoller() {
+    public Command runIntake() {
         return runVoltageCommand(() -> PIDRollerConstants.INTAKE_VOLTAGE)
                 .named("PIDRoller/Intake");
     }
@@ -73,12 +70,13 @@ public class PIDRoller extends Mechanism {
                 .named("PIDRoller/Idle");
     }
 
-
-    public Trigger isJammed() {
-        return new Trigger(
-            () -> inputs.motorVelocityRadsPerSec.lte(PIDRollerConstants.PIDROLLER_JAMMED_VELOCITY)
-            && inputs.motorCurrentAmps.gte(PIDRollerConstants.PIDROLLER_JAMMED_CURRENT)
-        ).debounce(PIDRollerConstants.PIDROLLER_JAMMED_TIME, DebounceType.kRising);
+    public Command runUnjam() {
+        return runVelocityCommand(() -> PIDRollerConstants.UNJAM_VELOCITY)
+                .until(isJammed().negate())
+                .withPriority(Command.HIGHEST_PRIORITY)
+                .named("PIDRoller/Unjam");
     }
+
+
 }
 
