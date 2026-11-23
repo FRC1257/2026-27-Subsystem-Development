@@ -53,8 +53,15 @@ public class BasicRollers extends SubsystemBase {
         return runVoltageCommand(() -> BasicRollersConstants.EJECT_VOLTAGE)
                 .named("BasicRollers/Outtake");
     }
+    public Command stopBasicRoller() {
+       return runVoltageCommand(() -> Volts.of(0.0)).named("BasicRollers/Stop");
+    }
+
+
 
 
 }
-// Avyan made it 
+// Avyan made this (NOT the goat btw)  
+
+
 

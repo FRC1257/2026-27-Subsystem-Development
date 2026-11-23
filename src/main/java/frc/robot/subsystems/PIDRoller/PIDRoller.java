@@ -66,8 +66,6 @@ public class PIDRoller extends SubsystemBase {
         );
     }
 
-
-
     public Command runVoltage(Supplier<Voltage> voltage) {
         return run(() -> io.setVoltage(UnitUtil.clamp(voltage.get(), Volts.of(-12.0), Volts.of(12.0))));
     }
@@ -81,10 +79,19 @@ public class PIDRoller extends SubsystemBase {
     public Command runVelocity() {
         return runVelocityCommand(() -> AngularVelocity.of(0));
                 .named("/PIDRoller/RunVelocity");
+    }
 
     public Command stopPIDRoller() {
         return runVoltage(() -> Volts.of(0.0)).withName("PIDRoller/OFF");
     }
-   
-}
+   public Trigger atGoalVelocity() {
+		return new Trigger(() -> inputs.leaderVelocityRadsPerSec.isNear(goalVelocity, PIDRollerConstants.VELOCITY_TOLERANCE));
+    }
+
+    public Trigger isJammed() {
+	    return new Trigger(
+		    () -> inputs.leaderVelocityRadsPerSec.lte(PIDROLLER_JAMMED_VELOCITY)
+		    && inputs.leaderCurrentAmps.gte(PIDRollerConstants.PIDROLLER_JAMMED_CURRENT)
+	    ).debounce(PIDRollerConstants.PIDROLLER_JAMMED_TIME, DebounceType.kRising);
+    }
 // William Zhang made this

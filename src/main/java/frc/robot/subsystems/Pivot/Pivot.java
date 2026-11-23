@@ -35,9 +35,10 @@ public class Pivot extends Mechanism {
 
   public Pivot(PivotIO io) {
       this.io = io;
-
-
-      this.profile = new TrapezoidProfile(
+        Scheduler.getDefault().addPeriodic(() -> {
+          io.updateInputs(inputs);
+      });
+        this.profile = new TrapezoidProfile(
           new TrapezoidProfile.Constraints(
               PivotConstants.MAX_ANGULAR_VELOCITY.magnitude(),
               PivotConstants.MAX_ANGULAR_ACCELERATION.magnitude()
@@ -45,9 +46,7 @@ public class Pivot extends Mechanism {
       );
 
 
-      Scheduler.getDefault().addPeriodic(() -> {
-          io.updateInputs(inputs);
-      });
+      
   }
 
 
