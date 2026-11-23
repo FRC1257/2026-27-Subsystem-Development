@@ -42,8 +42,8 @@ public class Pivot extends Mechanism {
 
         this.profile = new TrapezoidProfile(
             new TrapezoidProfile.Constraints(
-                PivotConstants.MAX_ANGULAR_VELOCITY.magnitude(),
-                PivotConstants.MAX_ANGULAR_ACCELERATION.magnitude()
+                PivotConstants.MAX_ANGULAR_VELOCITY.in(RadiansPerSecond),
+                PivotConstants.MAX_ANGULAR_ACCELERATION.in(RadiansPerSecondPerSecond)
             )
         );
 
@@ -66,10 +66,10 @@ public class Pivot extends Mechanism {
 
     private NeedsNameBuilderStage runAngleCommand(Supplier<Angle> angle) {
         return run(co -> {
-            setpoint = new TrapezoidProfile.State(inputs.rightpivotAngle.magnitude(), inputs.rightVelocityRadsPerSec.magnitude());
+            setpoint = new TrapezoidProfile.State(inputs.rightpivotAngle.in(Radians), inputs.rightVelocityRadsPerSec.in(RadiansPerSecond));
             while (true) {
                 goalAngle = UnitUtil.clamp(angle.get(), PivotConstants.MIN_ANGLE, PivotConstants.MAX_ANGLE);
-                goal = new TrapezoidProfile.State(goalAngle.magnitude(), 0.0);
+                goal = new TrapezoidProfile.State(goalAngle.in(Radians), 0.0);
                 setpoint = profile.calculate(0.02, setpoint, goal);
                 io.setAngle(Radians.of(setpoint.position), RadiansPerSecond.of(setpoint.velocity));
                 co.yield();
