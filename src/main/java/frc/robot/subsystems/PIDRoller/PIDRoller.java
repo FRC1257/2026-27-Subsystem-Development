@@ -9,12 +9,13 @@ import java.util.function.Supplier;
 import edu.wpi.first.math.filter.Debouncer.DebounceType;
 import edu.wpi.first.units.measure.AngularVelocity;
 import edu.wpi.first.units.measure.Voltage;
-import edu.wpi.first.wpilibj2.command.Command;
-import edu.wpi.first.wpilibj2.command.button.Trigger;
 
-import frc.robot.framework.Scheduler;
-import frc.robot.framework.NeedsNameBuilderStage;
-import frc.robot.subsystems.Mechanism;
+import org.wpilib.command3.Command;
+import org.wpilib.command3.Mechanism;
+import org.wpilib.command3.NeedsNameBuilderStage;
+import org.wpilib.command3.Scheduler;
+import org.wpilib.command3.Trigger;
+
 import frc.robot.subsystems.PIDRoller.PIDRollerIO.PIDRollerIOInputs;
 
 public class PIDRoller extends Mechanism {
