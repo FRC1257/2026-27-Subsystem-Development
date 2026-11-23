@@ -1,9 +1,19 @@
+package frc.robot.mechanisms.pivot;
+
 import frc.robot.mechanisms.pivot.PivotIO.PivotIOInputs; 
 import frc.robot.mechanisms.pivot.PivotConstants; 
 
+import org.wpilib.command2.Command;
+import org.wpilib.command3.Mechanism;
+import org.wpilib.command3.Scheduler;
+import org.wpilib.command3.NeedsNameBuilderStage;
+import org.wpilib.units.measure.Distance;
+import org.wpilib.math.trajectory.TrapezoidProfile;
+
+
 public class Pivot extends Mechanism {
     private final PivotIO io;   
-    private PivotIOInputs inputs = new PivotIOInputs();  
+    private final PivotIOInputs inputs = new PivotIOInputs(); 
 
     private TrapezoidProfile profile; 
     private TrapezoidProfile.State goal = new TrapezoidProfie.State(); 
